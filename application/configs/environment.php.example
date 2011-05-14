@@ -1,0 +1,12 @@
+<?php
+/**
+ * Define the APPLICATION_ENV constant
+ * 
+ * Copy this file to application/configs/environment.php and set the correct environment.
+ * The environment should be one of:
+ *   - development
+ *   - staging
+ *   - production
+ */
+
+define('APPLICATION_ENV', 'development');
