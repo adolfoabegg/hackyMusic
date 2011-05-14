@@ -530,25 +530,33 @@ p.incr,
   font-weight: normal; }
 
 /* line 43, common */
-.common-sprite, #logo, #sun, #searchbox input, .element input,
-.element textarea {
+.common-sprite, #logo, #sun, #searchbox input {
   background: url('../images/common-80e356aabb.png') no-repeat; }
 
 /**/
-/* line 28, ../src/common.scss */
+/* line 29, ../src/common.scss */
+html {
+  overflow-y: auto; }
+
+/* line 33, ../src/common.scss */
 body {
+  background: #7195a4;
+  background: #154c77;
   background: #31abde; }
 
-/* line 32, ../src/common.scss */
+/* line 39, ../src/common.scss */
 #container {
   width: 830px;
   margin: 0 auto;
   overflow: hidden;
   *zoom: 1;
   position: relative;
-  background: #31abde url('../images/common/clouds.jpg?1305415974') repeat-x; }
+  background: transparent url('../images/common-nosprite/clouds.rain.jpg?1305409195') no-repeat;
+  background: transparent url('../images/common-nosprite/clouds.storm.jpg?1305410842') no-repeat;
+  background: transparent url('../images/common-nosprite/clouds.jpg?1305396699') no-repeat;
+  min-height: 450px; }
 
-/* line 40, ../src/common.scss */
+/* line 50, ../src/common.scss */
 #logo {
   text-indent: -119988px;
   overflow: hidden;
@@ -562,8 +570,11 @@ body {
   top: 60px;
   left: 67px; }
 
-/* line 48, ../src/common.scss */
+/* line 58, ../src/common.scss */
 #sun {
+  background-position: 0 -176px;
+  height: 113px;
+  width: 113px;
   background-position: 0 -289px;
   height: 113px;
   width: 113px;
@@ -571,7 +582,27 @@ body {
   top: 45px;
   right: 82px; }
 
-/* line 55, ../src/common.scss */
+/* line 66, ../src/common.scss */
+#grass {
+  position: absolute;
+  top: 450px;
+  right: 0;
+  bottom: 0;
+  left: 0; }
+  /* line 70, ../src/common.scss */
+  #grass #grass-top {
+    height: 40px;
+    background: transparent url('../images/common-nosprite/grass-top.png?1305396390') no-repeat; }
+  /* line 75, ../src/common.scss */
+  #grass #grass-bottom {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #38bc04; }
+
+/* line 82, ../src/common.scss */
 #searchbox {
   display: inline;
   float: left;
@@ -601,7 +632,7 @@ body {
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
   -o-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4); }
-  /* line 78, ../src/common.scss */
+  /* line 105, ../src/common.scss */
   #searchbox input {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -631,20 +662,20 @@ body {
     -webkit-transition-duration: 0.2s;
     -o-transition-duration: 0.2s;
     transition-duration: 0.2s; }
-    /* line 84, ../src/common.scss */
+    /* line 111, ../src/common.scss */
     .ie6 #searchbox input, .ie7 #searchbox input {
       height: 1em !important;
       width: 80% !important; }
-    /* line 92, ../src/common.scss */
+    /* line 119, ../src/common.scss */
     .ie6 #searchbox input, .ie7 #searchbox input {
       padding: 1em; }
-    /* line 96, ../src/common.scss */
+    /* line 123, ../src/common.scss */
     .ie8 #searchbox input {
       padding: .75em 1em; }
-    /* line 105, ../src/common.scss */
+    /* line 132, ../src/common.scss */
     .ie6 #searchbox input {
       background: #fff !important; }
-    /* line 114, ../src/common.scss */
+    /* line 141, ../src/common.scss */
     #searchbox input:focus {
       outline: none;
       border: 1px solid #2fc5ff;
@@ -653,334 +684,168 @@ body {
       -o-box-shadow: 0 0 5px #00b8ff;
       box-shadow: 0 0 5px #00b8ff; }
 
-/* line 123, ../src/common.scss */
-#intro {
+/* line 150, ../src/common.scss */
+#playlist {
   display: inline;
   float: left;
   position: relative;
-  margin: 0 -50px 1.5em 50px;
-  display: inline;
-  float: left;
-  margin-right: 10px;
-  width: 460px; }
-  /* line 147, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-  * html #intro {
-    overflow-x: hidden; }
-  /* line 127, ../src/common.scss */
-  #intro h2 {
-    text-align: center;
-    font-size: 3em;
-    font-weight: bold;
-    margin: 0.1em 0 0.3em; }
-  /* line 134, ../src/common.scss */
-  #intro #screen {
-    height: 279px;
-    position: relative; }
-    /* line 139, ../src/common.scss */
-    #intro #screen img {
-      position: absolute;
-      top: 19px;
-      left: 60px;
-      height: 205px;
-      width: 328px; }
-    /* line 145, ../src/common.scss */
-    #intro #screen #play-button {
-      position: absolute;
-      top: 40%;
-      left: 50%;
-      margin: -24px 0 0 -24px;
-      cursor: pointer; }
-  /* line 153, ../src/common.scss */
-  #intro p {
-    text-align: center;
-    font-size: 2em;
-    margin: 0; }
-
-/* line 160, ../src/common.scss */
-#signup {
-  display: inline;
-  float: left;
-  position: relative;
-  margin: 0 -40px 1.5em 40px;
-  display: inline;
-  float: left;
-  margin-right: 10px;
-  width: 310px;
-  padding-right: 40px;
+  margin: 0 -220px 1.5em 220px;
+  padding-right: 240px;
   margin-right: 0;
-  margin-top: -0.4em;
-  padding: 1.5em 19px;
-  border: 1px solid gray;
-  border-radius: 10px; }
-  /* line 147, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-  * html #signup {
-    overflow-x: hidden; }
-  /* line 173, ../src/common.scss */
-  #signup h2 {
-    height: 3em;
-    font-size: 1.2em;
-    line-height: 1.3em; }
-
-/* line 180, ../src/common.scss */
-.keypoints {
-  list-style: none;
-  padding: 0; }
-  /* line 11, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/typography/lists/_bullets.scss */
-  .keypoints li {
-    list-style-image: none;
-    list-style-type: none;
-    margin-left: 0px; }
-  /* line 184, ../src/common.scss */
-  .keypoints li {
-    margin-bottom: .5em; }
-
-/* line 189, ../src/common.scss */
-#keypoints-left {
-  display: inline;
-  float: left;
+  margin-top: 2em;
+  margin-bottom: 3em;
   position: relative;
-  margin: 0 -40px 1.5em 40px;
-  display: inline;
-  float: left;
-  margin-right: 10px;
-  width: 510px; }
-  /* line 147, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-  * html #keypoints-left {
-    overflow-x: hidden; }
-
-/* line 194, ../src/common.scss */
-#keypoints-right {
-  display: inline;
-  float: left;
-  position: relative;
-  margin: 0 -20px 1.5em 20px;
-  display: inline;
-  float: left;
-  margin-right: 10px;
-  width: 370px;
-  margin-right: 0; }
-  /* line 147, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-  * html #keypoints-right {
-    overflow-x: hidden; }
-
-/* line 200, ../src/common.scss */
-hr {
-  background: #dddddd;
-  color: #dddddd;
-  clear: both;
-  float: none;
-  width: 100%;
-  height: 0.1em;
-  margin: 0 0 1.45em;
-  border: none; }
-
-/* line 204, ../src/common.scss */
-.benefit {
-  display: inline;
-  float: left;
-  position: relative;
-  margin: 0 -60px 1.5em 60px;
-  display: inline;
-  float: left;
-  margin-right: 10px;
-  width: 190px;
-  margin-top: 0.4em;
-  margin-bottom: 2em;
-  position: relative;
-  padding-top: 100px; }
-  /* line 147, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-  * html .benefit {
-    overflow-x: hidden; }
-  /* line 210, ../src/common.scss */
-  .benefit.first {
-    padding-left: 60px; }
-  /* line 214, ../src/common.scss */
-  .benefit.last {
-    margin-right: 0;
-    margin-right: 80px; }
-  /* line 222, ../src/common.scss */
-  .benefit .thumbnail {
+  height: 200px;
+  width: 360px;
+  padding: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  background: #636363;
+  background: -moz-linear-gradient(top, #636363 0%, #595959 12%, #474747 83%, #2c2c2c 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #636363), color-stop(12%, #595959), color-stop(83%, #474747), color-stop(100%, #2c2c2c));
+  background: -webkit-linear-gradient(top, #636363 0%, #595959 12%, #474747 83%, #2c2c2c 100%);
+  background: -o-linear-gradient(top, #636363 0%, #595959 12%, #474747 83%, #2c2c2c 100%);
+  background: -ms-linear-gradient(top, #636363 0%, #595959 12%, #474747 83%, #2c2c2c 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#636363', endColorstr='#2c2c2c',GradientType=0 );
+  background: linear-gradient(top, #636363 0%, #595959 12%, #474747 83%, #2c2c2c 100%);
+  -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  -o-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
+  opacity: 0.9; }
+  /* line 180, ../src/common.scss */
+  #playlist #songs {
     position: absolute;
-    top: 0;
-    left: 50%;
-    height: 95px;
-    width: 114px;
-    margin-left: -57px; }
-  /* line 238, ../src/common.scss */
-  .benefit h3 {
-    margin: 0;
-    font-size: 1em;
-    line-height: 1.5em;
-    font-weight: bold; }
-  /* line 245, ../src/common.scss */
-  .benefit p {
-    margin: 0; }
-
-/* line 250, ../src/common.scss */
-footer {
-  display: inline;
-  float: left;
-  position: relative;
-  margin: 0 -50px 1.5em 50px;
-  display: inline;
-  float: left;
-  margin-right: 10px;
-  width: 850px;
-  position: relative;
-  font-size: 93%;
-  color: #999; }
-  /* line 147, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-  * html footer {
-    overflow-x: hidden; }
-  /* line 259, ../src/common.scss */
-  footer ul {
-    float: right;
-    margin: 0;
-    padding: 0;
-    border: 0;
+    top: 15px;
+    right: 15px;
+    bottom: 15px;
+    left: 15px;
+    clear: both; }
+  /* line 186, ../src/common.scss */
+  #playlist #songs .viewport {
+    width: 350px;
+    height: 100%;
     overflow: hidden;
-    *zoom: 1; }
-    /* line 46, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/typography/lists/_inline-block-list.scss */
-    footer ul li {
-      list-style-image: none;
-      list-style-type: none;
-      margin-left: 0px;
+    position: relative; }
+  /* line 187, ../src/common.scss */
+  #playlist #songs .overview {
+    width: 340px;
+    list-style: none;
+    position: absolute;
+    left: 0;
+    top: 0; }
+  /* line 189, ../src/common.scss */
+  #playlist #songs .thumb .end,
+  #playlist #songs .thumb {
+    background: #ffffff;
+    background: -moz-linear-gradient(left, white 0%, #a3a3a3 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, white), color-stop(100%, #a3a3a3));
+    background: -webkit-linear-gradient(left, white 0%, #a3a3a3 100%);
+    background: -o-linear-gradient(left, white 0%, #a3a3a3 100%);
+    background: -ms-linear-gradient(left, white 0%, #a3a3a3 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#A3A3A3',GradientType=1 );
+    background: linear-gradient(left, #ffffff 0%, #a3a3a3 100%);
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -o-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    border-radius: 10px; }
+  /* line 201, ../src/common.scss */
+  #playlist #songs .scrollbar {
+    background: rgba(0, 0, 0, 0.2);
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -o-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    border-radius: 10px;
+    position: relative;
+    float: right;
+    width: 5px; }
+  /* line 202, ../src/common.scss */
+  #playlist #songs .track {
+    background-color: transparent;
+    height: 100%;
+    width: 5px;
+    position: relative;
+    padding: 0; }
+  /* line 203, ../src/common.scss */
+  #playlist #songs .thumb {
+    height: 20px;
+    width: 5px;
+    cursor: pointer;
+    overflow: hidden;
+    position: absolute;
+    top: 0; }
+  /* line 204, ../src/common.scss */
+  #playlist #songs .thumb .end {
+    overflow: hidden;
+    height: 5px;
+    width: 5px; }
+  /* line 205, ../src/common.scss */
+  #playlist #songs .disable {
+    display: none; }
+  /* line 207, ../src/common.scss */
+  #playlist .song {
+    overflow: hidden;
+    *zoom: 1;
+    padding-bottom: 10px;
+    margin-bottom: 6px;
+    height: 34px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+    -o-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+    cursor: pointer; }
+    /* line 217, ../src/common.scss */
+    #playlist .song .cover {
+      float: left;
+      margin: 3px 10px 3px 10px;
+      -moz-box-shadow: 0 0 3px black;
+      -webkit-box-shadow: 0 0 3px black;
+      -o-box-shadow: 0 0 3px black;
+      box-shadow: 0 0 3px black; }
+    /* line 223, ../src/common.scss */
+    #playlist .song .title, #playlist .song .artist {
+      margin-top: 8px;
       display: -moz-inline-box;
       -moz-box-orient: vertical;
       display: inline-block;
       vertical-align: middle;
       *vertical-align: auto;
-      white-space: nowrap; }
+      color: #eee;
+      font-size: 138.5%;
+      text-shadow: black 0 -1px 0; }
       /* line 7, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
-      footer ul li {
+      #playlist .song .title, #playlist .song .artist {
         *display: inline; }
-    /* line 264, ../src/common.scss */
-    footer ul li {
-      margin-left: 1em; }
+    /* line 231, ../src/common.scss */
+    #playlist .song .artist {
+      margin-left: 5px;
+      color: #ccc;
+      font-size: 93%; }
+    /* line 238, ../src/common.scss */
+    #playlist .song.playing .title {
+      text-shadow: white 0 0 5px; }
 
-/* line 270, ../src/common.scss */
-.cssgradients #fancybox-overlay {
-  opacity: 1 !important;
-  background: -webkit-radial-gradient(rgba(127, 127, 127, 0.5), rgba(127, 127, 127, 0.5) 35%, rgba(0, 0, 0, 0.7)) !important;
-  background: -moz-radial-gradient(rgba(127, 127, 127, 0.5) 0%, rgba(127, 127, 127, 0.5) 35%, rgba(0, 0, 0, 0.7) 100%) !important; }
+/* line 245, ../src/common.scss */
+#youtube {
+  text-align: center; }
 
-/* line 278, ../src/common.scss */
-.element {
-  min-height: 5.25em; }
-  /* line 281, ../src/common.scss */
-  .element .element-label {
-    margin-bottom: 0.2em;
-    font-size: 0.93em;
-    font-weight: 600; }
-  /* line 289, ../src/common.scss */
-  .element input,
-  .element textarea {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    box-sizing: border-box;
-    height: 3em;
-    width: 100%;
-    padding-left: 1em;
-    padding-right: 1em;
-    background-color: #fff;
-    background-repeat: repeat-x;
-    background-position: 0 0;
-    border: 1px solid #9c9c9c;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -o-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -khtml-border-radius: 5px;
-    border-radius: 5px;
-    -moz-box-shadow: 0 -1px 1px #ebebeb;
-    -webkit-box-shadow: 0 -1px 1px #ebebeb;
-    -o-box-shadow: 0 -1px 1px #ebebeb;
-    box-shadow: 0 -1px 1px #ebebeb;
-    -moz-transition-property: border, box-shadow;
-    -webkit-transition-property: border, box-shadow;
-    -o-transition-property: border, box-shadow;
-    transition-property: border, box-shadow;
-    -moz-transition-duration: 0.2s;
-    -webkit-transition-duration: 0.2s;
-    -o-transition-duration: 0.2s;
-    transition-duration: 0.2s; }
-    /* line 293, ../src/common.scss */
-    .ie6 .element input, .ie7 .element input, .ie6
-    .element textarea, .ie7
-    .element textarea {
-      height: 1em !important;
-      width: 80% !important; }
-    /* line 301, ../src/common.scss */
-    .ie6 .element input, .ie7 .element input, .ie6
-    .element textarea, .ie7
-    .element textarea {
-      padding: 1em; }
-    /* line 305, ../src/common.scss */
-    .ie8 .element input, .ie8
-    .element textarea {
-      padding: .75em 1em; }
-    /* line 313, ../src/common.scss */
-    .ie6 .element input, .ie6
-    .element textarea {
-      background: #fff !important; }
-    /* line 323, ../src/common.scss */
-    .element input:focus,
-    .element textarea:focus {
-      outline: none;
-      border: 1px solid #2fc5ff;
-      -moz-box-shadow: 0 0 5px #00b8ff;
-      -webkit-box-shadow: 0 0 5px #00b8ff;
-      -o-box-shadow: 0 0 5px #00b8ff;
-      box-shadow: 0 0 5px #00b8ff; }
-  /* line 330, ../src/common.scss */
-  .element textarea {
-    height: 15em; }
-  /* line 334, ../src/common.scss */
-  .element .element-description {
-    padding: 0 0.5em;
-    color: #666; }
-  /* line 339, ../src/common.scss */
-  .element .element-error {
-    padding: 0 0.5em;
-    color: #f00; }
-
-/* line 346, ../src/common.scss */
-input:-moz-placeholder {
-  color: darkGray; }
-
-/* line 356, ../src/common.scss */
-#signup-form #subdomain-element .element-input,
-#signup-form #subdomain-element .element-description {
-  display: -moz-inline-box;
-  -moz-box-orient: vertical;
-  display: inline-block;
-  vertical-align: middle;
-  *vertical-align: auto; }
-  /* line 7, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
-  #signup-form #subdomain-element .element-input,
-  #signup-form #subdomain-element .element-description {
-    *display: inline; }
-/* line 361, ../src/common.scss */
-#signup-form #subdomain {
-  width: 180px !important; }
-  /* line 364, ../src/common.scss */
-  .ie6 #signup-form #subdomain, .ie7 #signup-form #subdomain {
-    width: 120px !important; }
-/* line 369, ../src/common.scss */
-#signup-form #submit-element {
-  height: 3.75em; }
-  /* line 372, ../src/common.scss */
-  #signup-form #submit-element #submit {
-    height: 44px;
-    width: 153px;
-    margin: 6px -3px 6px; }
-    /* line 376, ../src/common.scss */
-    .ie8 #signup-form #submit-element #submit, .no-ie #signup-form #submit-element #submit {
-      text-indent: -119988px;
-      overflow: hidden;
-      text-align: left;
-      direction: ltr;
-      background-repeat: no-repeat;
-      border: none;
-      background-color: #fff; }
+/* line 249, ../src/common.scss */
+#tree {
+  position: absolute;
+  top: 317px;
+  left: 80px;
+  height: 231px;
+  width: 114px;
+  background: url('../images/common-nosprite/tree.png?1305407658') no-repeat; }

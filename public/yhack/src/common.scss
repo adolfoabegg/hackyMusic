@@ -12,6 +12,7 @@ $blueprint-grid-columns: 21;
 @import "html5-boilerplate";
 @import "compass/css3";
 @import "compass/utilities/lists";
+@import "compass/utilities/general/clearfix";
 @import "blueprint";
 @import "blueprint/fancy-type";
 
@@ -25,14 +26,23 @@ $common-input-background-spacing: 50px;
 
 // Common Styling
 
+html {
+    overflow-y: auto;
+}
+
 body {
+    background: #7195a4;
+    background: #154c77;
     background: #31abde;
 }
 
 #container {
     @include container;
     position: relative;
-    background: #31abde image-url('common/clouds.jpg') repeat-x;
+    background: transparent image-url('common-nosprite/clouds.rain.jpg') no-repeat;
+    background: transparent image-url('common-nosprite/clouds.storm.jpg') no-repeat;
+    background: transparent image-url('common-nosprite/clouds.jpg') no-repeat;
+    min-height: 450px;
 
     // @include showgrid;
 }
@@ -46,10 +56,27 @@ body {
 }
 
 #sun {
+    @include common-sprite(moon, true);
     @include common-sprite(sun, true);
 
     position: absolute;
     top: 45px; right: 82px;
+}
+
+#grass {
+    position: absolute;
+    top: 450px; right: 0; bottom: 0; left: 0;
+
+    #grass-top {
+        height: 40px;
+        background: transparent image-url('common-nosprite/grass-top.png') no-repeat;
+    }
+
+    #grass-bottom {
+        position: absolute;
+        top: 40px; right: 0; bottom: 0; left: 0;
+        background: #38bc04;
+    }
 }
 
 #searchbox {
@@ -120,265 +147,108 @@ body {
     }
 }
 
-#intro {
-    @include push(1.25);
-    @include column(11.75);
-
-    h2 {
-        text-align: center;
-        font-size: 3em;
-        font-weight: bold;
-        margin: 0.1em 0 0.3em;
-    }
-
-    #screen {
-        height: 279px;
-        position: relative;
-
-
-        img {
-            position: absolute;
-            top: 19px; left: 60px;
-            height: 205px; width: 328px;
-        }
-
-        #play-button {
-            position: absolute;
-            top: 40%; left: 50%;
-            margin: -24px 0 0 -24px;
-            cursor: pointer;
-        }
-    }
-
-    p {
-        text-align: center;
-        font-size: 2em;
-        margin: 0;
-    }
-}
-
-#signup {
-    @include push(1);
-    @include column(8);
-    @include append(1);
+#playlist {
+    @include push(5.5);
+    @include append(6);
     @include last;
-
-    @include prepend-top(-0.4em);
-
-    padding: 1.5em 19px;
-
-    border: 1px solid gray;
-    border-radius: 10px;
-
-    h2 {
-        height: 3em;
-        font-size: 1.2em;
-        line-height: 1.3em;
-    }
-}
-
-.keypoints {
-    @include no-bullets;
-    padding: 0;
-
-    li {
-        margin-bottom: .5em;
-    }
-}
-
-#keypoints-left {
-    @include push(1);
-    @include column(13);
-}
-
-#keypoints-right {
-    @include push(0.5);
-    @include column(9.5);
-    @include last;
-}
-
-hr {
-    @include colruler;
-}
-
-.benefit {
-    @include push(1.5);
-    @include column(5);
-    @include prepend-top(0.4em);
-    @include append-bottom(2em);
-
-    &.first {
-        @include prepend(1.5);
-    }
-
-    &.last {
-        @include last;
-        margin-right: $blueprint_grid_outer_width * 2;
-    }
+    @include prepend-top(2em);
+    @include append-bottom(3em);
 
     position: relative;
-    padding-top: 100px;
 
-    .thumbnail {
+    height: 200px;
+
+    width: 360px;
+    padding: 15px;
+
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    @include border-radius(5px);
+
+    background: #636363;
+    background: -moz-linear-gradient(top, #636363 0%, #595959 12%, #474747 83%, #2c2c2c 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#636363), color-stop(12%,#595959), color-stop(83%,#474747), color-stop(100%,#2c2c2c));
+    background: -webkit-linear-gradient(top, #636363 0%,#595959 12%,#474747 83%,#2c2c2c 100%);
+    background: -o-linear-gradient(top, #636363 0%,#595959 12%,#474747 83%,#2c2c2c 100%);
+    background: -ms-linear-gradient(top, #636363 0%,#595959 12%,#474747 83%,#2c2c2c 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#636363', endColorstr='#2c2c2c',GradientType=0 );
+    background: linear-gradient(top, #636363 0%,#595959 12%,#474747 83%,#2c2c2c 100%);
+
+    @include single-box-shadow(rgba(255, 255, 255, 0.4), 0, 1px, 0, false, true);
+
+    @include opacity(0.90);
+
+    #songs {
         position: absolute;
-        top: 0; left: 50%;
-        height: 95px; width: 114px;
-        margin-left: -57px;
+        top: 15px; right: 15px; bottom: 15px; left: 15px;
+        clear: both;
     }
 
-    #thumbnail-mail {
+    #songs .viewport { width: 350px; height: 100%; overflow: hidden; position: relative; }
+    #songs .overview { width: 340px; list-style: none; position: absolute; left: 0; top: 0; }
+    #songs .thumb .end,
+    #songs .thumb {
+        background: #ffffff;
+        background: -moz-linear-gradient(left, #ffffff 0%, #a3a3a3 100%);
+        background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ffffff), color-stop(100%,#a3a3a3));
+        background: -webkit-linear-gradient(left, #ffffff 0%,#a3a3a3 100%);
+        background: -o-linear-gradient(left, #ffffff 0%,#a3a3a3 100%);
+        background: -ms-linear-gradient(left, #ffffff 0%,#a3a3a3 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFFF', endColorstr='#A3A3A3',GradientType=1 );
+        background: linear-gradient(left, #ffffff 0%,#a3a3a3 100%);
+        
+        @include border-radius(10px);
     }
+    #songs .scrollbar { background: rgba(0, 0, 0, 0.2); @include border-radius(10px); position: relative; float: right; width: 5px; }
+    #songs .track { background-color: transparent; height: 100%; width: 5px; position: relative; padding: 0; }
+    #songs .thumb { height: 20px; width: 5px; cursor: pointer; overflow: hidden; position: absolute; top: 0; }
+    #songs .thumb .end { overflow: hidden; height: 5px; width: 5px; }
+    #songs .disable { display: none; }
 
-    #thumbnail-teamwork {
-    }
+    .song {
+        @include clearfix;
+        padding-bottom: 10px;
+        margin-bottom: 6px;
+        height: 34px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        @include single-box-shadow(rgba(255, 255, 255, 0.2), 0, 1px, 0);
 
-    #thumbnail-secure {
-    }
+        cursor: pointer;
 
-    h3 {
-        margin: 0;
-        font-size: 1em;
-        line-height: 1.5em;
-        font-weight: bold;
-    }
-
-    p {
-        margin: 0;
-    }
-}
-
-footer {
-    @include push(1.25);
-    @include column(21.5);
-
-    position: relative;
-
-    font-size: 93%;
-    color: #999;
-
-    ul {
-        float: right;
-
-        @include inline-block-list;
-
-        li {
-            margin-left: 1em;
-        }
-    }
-}
-
-.cssgradients #fancybox-overlay {
-    opacity: 1 !important;
-    background: -webkit-radial-gradient(rgba(127, 127, 127, 0.5), rgba(127, 127, 127, 0.5) 35%, rgba(0, 0, 0, 0.7)) !important;
-    background: -moz-radial-gradient(rgba(127, 127, 127, 0.5) 0%, rgba(127, 127, 127, 0.5) 35%, rgba(0, 0, 0, 0.7) 100%) !important;
-};
-
-// Form Layout + Elements
-
-.element {
-    min-height: 5.25em;
-
-    .element-label {
-        margin-bottom: 0.2em;
-        font-size: 0.93em; // 93%
-        font-weight: 600;
-    }
-
-    input,
-    textarea
-    {
-        @include box-sizing(border-box);
-        height: 3em; width: 100%;
-
-        .ie6 &, .ie7 & {
-            height: 1em !important;
-            width: 80% !important;
+        .cover {
+            float: left;
+            margin: 3px 10px 3px 10px;
+            @include single-box-shadow(rgba(0, 0, 0, 1), 0, 0, 3px);
         }
 
-        padding-left: 1em;
-        padding-right: 1em;
-
-        .ie6 &, .ie7 & {
-            padding: 1em;
-        }
-
-        .ie8 & {
-            padding: .75em 1em;
-        }
-
-        background-color: #fff;
-        background-repeat: repeat-x;
-        @include common-sprite(input-background);
-
-        .ie6 & {
-            background: #fff !important;
-        }
-
-        border: 1px solid #9c9c9c;
-        @include border-radius(5px);
-        @include box-shadow(#ebebeb, 0, -1px, 1px);
-
-        @include transition("border, box-shadow", 0.2s);
-
-        &:focus {
-            outline: none;
-            border: 1px solid #2fc5ff;
-            @include box-shadow(#00b8ff, 0, 0, 5px);
-        }
-    }
-
-    textarea {
-        height: 15em;
-    }
-
-    .element-description {
-        padding: 0 0.5em;
-        color: #666;
-    }
-
-    .element-error {
-        padding: 0 0.5em;
-        color: #f00;
-    }
-}
-
-input:-moz-placeholder
-{
-    color: darkGray;
-}
-
-// Form Customizations
-
-#signup-form {
-    #subdomain-element {
-        .element-input,
-        .element-description
-        {
+        .title, .artist {
+            margin-top: 8px;
             @include inline-block;
+            color: #eee;
+            font-size: 138.5%;
+            @include single-text-shadow(rgba(0, 0, 0, 1), 0, -1px, 0);
         }
-    }
 
-    #subdomain {
-        width: 180px !important;
-
-        .ie6 &, .ie7 & {
-            width: 120px !important;
+        .artist {
+            margin-left: 5px;
+            color: #ccc;
+            font-size: 93%;
         }
-    }
 
-    #submit-element {
-        height: 3.75em;
-
-        #submit {
-            height: 44px; width: 153px;
-            margin: 6px -3px 6px;
-
-            .ie8 &, .no-ie & {
-                @include image-replacement;
-
-                border: none;
-                background-color: #fff;
+        &.playing {
+            .title {
+                @include single-text-shadow(rgba(255, 255, 255, 1), 0, 0, 5px);
             }
         }
     }
+}
+
+#youtube {
+    text-align: center;
+}
+
+#tree {
+    position: absolute;
+    top: 317px; left: 80px;
+    height: 231px; width: 114px;
+    background: image-url('common-nosprite/tree.png') no-repeat;
 }

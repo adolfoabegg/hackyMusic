@@ -1,71 +1,141 @@
 <?
     $this->headLink()->prependStylesheet('/yhack/css/common.css');
+
+    $this->headScript()->appendFile('/yhack/js/jquery.tinyscrollbar.min.js');
+    $this->headScript()->appendFile('http://www.youtube.com/player_api');
 ?>
 <html>
     <head>
         <?= $this->headMeta() ?>
         <?= $this->headLink() ?>
+
         <?= $this->jQuery() ?>
         <?= $this->headScript() ?>
 
         
     </head>
     <body>
+        <div id="grass">
+            <div id="grass-top"></div>
+            <div id="grass-bottom"></div>
+        </div>
+
         <div id="container">
             <div id="logo">Mood Music</div>
             <div id="sun"></div>
 
             <div id="searchbox">
-                <input type="" name="searchbox" placeholder="Type your city to find music matching your weather" value="" />
+                <input type="" name="searchbox" placeholder="Type your city to find music matching your weather." value="" />
             </div>
 
             <div id="playlist">
-                <div class="song">
-                    <img src="" alt="" class="cover" />
-                    <div class="title"></div>
-                    <div class="artist"></div>
-                    <div class="youtube"></div>
-                </div>
-                <div class="song">
-                    <img src="" alt="" class="cover" />
-                    <div class="title"></div>
-                    <div class="artist"></div>
-                    <div class="youtube"></div>
-                </div>
-                <div class="song">
-                    <img src="" alt="" class="cover" />
-                    <div class="title"></div>
-                    <div class="artist"></div>
-                    <div class="youtube"></div>
-                </div>
-                <div class="song">
-                    <img src="" alt="" class="cover" />
-                    <div class="title"></div>
-                    <div class="artist"></div>
-                    <div class="youtube"></div>
+                <div id="songs">
+                    <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+                    <div class="viewport">
+                        <div class="overview"> 
+                            <div class="song playing" data-video="vx2u5uUu3DE">
+                                <img src="http://userserve-ak.last.fm/serve/34s/41161483.png" class="cover" />
+                                <div class="title">Born This Way</div>
+                                <div class="artist">Lady Gaga</div>
+                            </div>
+                            <div class="song" data-video="bESGLojNYSo">
+                                <img src="http://userserve-ak.last.fm/serve/34s/34568217.jpg" class="cover" />
+                                <div class="title">Born This Way</div>
+                                <div class="artist">Lady Gaga</div>
+                            </div>
+                            <div class="song" data-video="qrO4YZeyl0I">
+                                <img src="http://userserve-ak.last.fm/serve/34s/34568217.jpg" class="cover" />
+                                <div class="title">Born This Way</div>
+                                <div class="artist">Lady Gaga</div>
+                            </div>
+                            <div class="song" data-video="vx2u5uUu3DE">
+                                <img src="http://userserve-ak.last.fm/serve/34s/41161483.png" class="cover" />
+                                <div class="title">Born This Way</div>
+                                <div class="artist">Lady Gaga</div>
+                            </div>
+                            <div class="song" data-video="bESGLojNYSo">
+                                <img src="http://userserve-ak.last.fm/serve/34s/34568217.jpg" class="cover" />
+                                <div class="title">Born This Way</div>
+                                <div class="artist">Lady Gaga</div>
+                            </div>
+                            <div class="song" data-video="qrO4YZeyl0I">
+                                <img src="http://userserve-ak.last.fm/serve/34s/34568217.jpg" class="cover" />
+                                <div class="title">Born This Way</div>
+                                <div class="artist">Lady Gaga</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+            <div id="youtube">
+            </div>
+
+            <!--
+                <iframe width="300" height="27" src="http://www.youtube.com/embed/wV1FrqwZyKw?version=3&fs=0&enablejsapi=1&playlist=wV1FrqwZyKw,vx2u5uUu3DE,s86K-p089R8" frameborder="0" allowfullscreen></iframe>
+            -->
+
+            <div id="tree"></div>
         </div>
+        
+        <script>
+            $(function() {
+                $('#songs').tinyscrollbar();
+            });
+        </script>
+
+        <!-- YOUTUBE -->
+
+        <script>
+            var player;
+
+            function onYouTubePlayerAPIReady() {
+                player = new YT.Player('youtube', {
+                height: '27',
+                width: '300',
+                videoId: 'qrO4YZeyl0I',
+                playerVars: {
+                    fs: 0,
+                    iv_load_policy: 3
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+                });
+            }
+
+            function onPlayerReady(event) {
+                // event.target.playVideo();
+            }
+
+            var done = false;
+
+            function onPlayerStateChange(event) {
+                if (event.data == YT.PlayerState.ENDED) {
+                    play($('.song.playing').next());
+                }
+            }
+
+            $('.song').click(function() {
+                play($(this));
+            });
+
+            function play(nextSong) {
+                var lastSong = $('.song.playing');
+                lastSong.removeClass('playing');
+
+                if (nextSong) {
+                    if (nextSong.data('start')) {
+                        player.loadVideoById(nextSong.data('video'), nextSong.data('start'));
+                    } else {
+                        player.loadVideoById(nextSong.data('video'));
+                    }
+
+                    nextSong.addClass('playing');
+                }
+            }
+        </script>
     </body>
 </html>
 
