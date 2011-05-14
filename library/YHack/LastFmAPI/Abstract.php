@@ -1,13 +1,13 @@
 <?php
 /**
- * Parent for classes querying Yahoo!'s APIs
+ * Parent for classes querying Last.fm's APIs
  *
  * @category YHack
- * @package YahooAPI
+ * @package LastFm
  * @copyright Codefathers team
  */
 
-class YHack_LastFmAPI_Abstract 
+abstract class YHack_LastFmAPI_Abstract 
 {
     /**
      * Last.fm's API endpoint

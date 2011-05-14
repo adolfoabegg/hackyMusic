@@ -7,7 +7,7 @@
  * @copyright Codefathers team
  */
 
-class YHack_YahooAPI_Abstract 
+abstract class YHack_YahooAPI_Abstract 
 {
     /**
      * Yahoo API key
