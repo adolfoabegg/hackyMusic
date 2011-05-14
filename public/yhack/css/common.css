@@ -529,10 +529,10 @@ p.incr,
   font-style: italic;
   font-weight: normal; }
 
-/* line 37, common */
+/* line 43, common */
 .common-sprite, #logo, #sun, #searchbox input, .element input,
 .element textarea {
-  background: url('../images/common-e8084f5dc8.png') no-repeat; }
+  background: url('../images/common-80e356aabb.png') no-repeat; }
 
 /**/
 /* line 28, ../src/common.scss */
@@ -546,7 +546,7 @@ body {
   overflow: hidden;
   *zoom: 1;
   position: relative;
-  background: #31abde url('../images/common/clouds.jpg?1305394157') repeat-x; }
+  background: #31abde url('../images/common/clouds.jpg?1305415974') repeat-x; }
 
 /* line 40, ../src/common.scss */
 #logo {
@@ -564,7 +564,7 @@ body {
 
 /* line 48, ../src/common.scss */
 #sun {
-  background-position: 0 -176px;
+  background-position: 0 -289px;
   height: 113px;
   width: 113px;
   position: absolute;
