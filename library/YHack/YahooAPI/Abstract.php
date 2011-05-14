@@ -57,7 +57,7 @@ class YHack_YahooAPI_Abstract
      * Set options
      *
      * @param array|Zend_Config $config
-     * @return YHack_YahooAPI_Weather
+     * @return YHack_YahooAPI_Abstract
      */
     public function setOptions($config)
     {
