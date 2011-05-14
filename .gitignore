@@ -12,3 +12,5 @@ Icon?
 Thumbs.db
 application/configs/environment.php
 application/configs/environment.ini
+.sass-cache/
+*.py[co]

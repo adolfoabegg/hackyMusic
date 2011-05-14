@@ -1,0 +1,384 @@
+/**
+ * Helpdesk
+ * 
+ * Copyright (C) 2011 Helpdesk. All rights reserved.
+ * 
+ * Proprietary code. No modification, distribution or reproduction without
+ * written permission.
+ */
+
+$blueprint-grid-columns: 21;
+
+@import "html5-boilerplate";
+@import "compass/css3";
+@import "compass/utilities/lists";
+@import "blueprint";
+@import "blueprint/fancy-type";
+
+@include html5-boilerplate;
+@include blueprint-typography;
+@include fancy-type;
+
+$common-input-background-spacing: 50px;
+
+@import "common/*.png"; /**/
+
+// Common Styling
+
+body {
+    background: #31abde;
+}
+
+#container {
+    @include container;
+    position: relative;
+    background: #31abde image-url('common/clouds.jpg') repeat-x;
+
+    // @include showgrid;
+}
+
+#logo {
+    @include image-replacement;
+    @include common-sprite(logo, true);
+
+    position: absolute;
+    top: 60px; left: 67px;
+}
+
+#sun {
+    @include common-sprite(sun, true);
+
+    position: absolute;
+    top: 45px; right: 82px;
+}
+
+#searchbox {
+    @include push(4);
+    @include append(4);
+    @include last;
+    @include prepend-top(15.5em);
+
+    width: 494px;
+    padding: 7px;
+
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    @include border-radius(5px);
+
+    background: #2194b5;
+    background: -moz-linear-gradient(top, #2194b5 0%, #176795 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#2194b5), color-stop(100%,#176795));
+    background: -webkit-linear-gradient(top, #2194b5 0%,#176795 100%);
+    background: -o-linear-gradient(top, #2194b5 0%,#176795 100%);
+    background: -ms-linear-gradient(top, #2194b5 0%,#176795 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2194B5', endColorstr='#176795',GradientType=0 );
+    background: linear-gradient(top, #2194b5 0%,#176795 100%);
+
+    @include single-box-shadow(rgba(255, 255, 255, 0.4), 0, 1px, 0, false, true);
+
+    input {
+        @include box-sizing(border-box);
+        height: 2em; width: 100%;
+
+        font-size: 1.5em;
+
+        .ie6 &, .ie7 & {
+            height: 1em !important;
+            width: 80% !important;
+        }
+
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+
+        .ie6 &, .ie7 & {
+            padding: 1em;
+        }
+
+        .ie8 & {
+            padding: .75em 1em;
+        }
+
+        background-color: #fff;
+        background-repeat: repeat-x;
+        @include common-sprite(input-background);
+        -webkit-background-clip: padding-box;
+
+        .ie6 & {
+            background: #fff !important;
+        }
+
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        @include border-radius(3px);
+
+        @include transition("border, box-shadow", 0.2s);
+
+        &:focus {
+            outline: none;
+            border: 1px solid #2fc5ff;
+            @include box-shadow(#00b8ff, 0, 0, 5px);
+        }
+
+    }
+}
+
+#intro {
+    @include push(1.25);
+    @include column(11.75);
+
+    h2 {
+        text-align: center;
+        font-size: 3em;
+        font-weight: bold;
+        margin: 0.1em 0 0.3em;
+    }
+
+    #screen {
+        height: 279px;
+        position: relative;
+
+
+        img {
+            position: absolute;
+            top: 19px; left: 60px;
+            height: 205px; width: 328px;
+        }
+
+        #play-button {
+            position: absolute;
+            top: 40%; left: 50%;
+            margin: -24px 0 0 -24px;
+            cursor: pointer;
+        }
+    }
+
+    p {
+        text-align: center;
+        font-size: 2em;
+        margin: 0;
+    }
+}
+
+#signup {
+    @include push(1);
+    @include column(8);
+    @include append(1);
+    @include last;
+
+    @include prepend-top(-0.4em);
+
+    padding: 1.5em 19px;
+
+    border: 1px solid gray;
+    border-radius: 10px;
+
+    h2 {
+        height: 3em;
+        font-size: 1.2em;
+        line-height: 1.3em;
+    }
+}
+
+.keypoints {
+    @include no-bullets;
+    padding: 0;
+
+    li {
+        margin-bottom: .5em;
+    }
+}
+
+#keypoints-left {
+    @include push(1);
+    @include column(13);
+}
+
+#keypoints-right {
+    @include push(0.5);
+    @include column(9.5);
+    @include last;
+}
+
+hr {
+    @include colruler;
+}
+
+.benefit {
+    @include push(1.5);
+    @include column(5);
+    @include prepend-top(0.4em);
+    @include append-bottom(2em);
+
+    &.first {
+        @include prepend(1.5);
+    }
+
+    &.last {
+        @include last;
+        margin-right: $blueprint_grid_outer_width * 2;
+    }
+
+    position: relative;
+    padding-top: 100px;
+
+    .thumbnail {
+        position: absolute;
+        top: 0; left: 50%;
+        height: 95px; width: 114px;
+        margin-left: -57px;
+    }
+
+    #thumbnail-mail {
+    }
+
+    #thumbnail-teamwork {
+    }
+
+    #thumbnail-secure {
+    }
+
+    h3 {
+        margin: 0;
+        font-size: 1em;
+        line-height: 1.5em;
+        font-weight: bold;
+    }
+
+    p {
+        margin: 0;
+    }
+}
+
+footer {
+    @include push(1.25);
+    @include column(21.5);
+
+    position: relative;
+
+    font-size: 93%;
+    color: #999;
+
+    ul {
+        float: right;
+
+        @include inline-block-list;
+
+        li {
+            margin-left: 1em;
+        }
+    }
+}
+
+.cssgradients #fancybox-overlay {
+    opacity: 1 !important;
+    background: -webkit-radial-gradient(rgba(127, 127, 127, 0.5), rgba(127, 127, 127, 0.5) 35%, rgba(0, 0, 0, 0.7)) !important;
+    background: -moz-radial-gradient(rgba(127, 127, 127, 0.5) 0%, rgba(127, 127, 127, 0.5) 35%, rgba(0, 0, 0, 0.7) 100%) !important;
+};
+
+// Form Layout + Elements
+
+.element {
+    min-height: 5.25em;
+
+    .element-label {
+        margin-bottom: 0.2em;
+        font-size: 0.93em; // 93%
+        font-weight: 600;
+    }
+
+    input,
+    textarea
+    {
+        @include box-sizing(border-box);
+        height: 3em; width: 100%;
+
+        .ie6 &, .ie7 & {
+            height: 1em !important;
+            width: 80% !important;
+        }
+
+        padding-left: 1em;
+        padding-right: 1em;
+
+        .ie6 &, .ie7 & {
+            padding: 1em;
+        }
+
+        .ie8 & {
+            padding: .75em 1em;
+        }
+
+        background-color: #fff;
+        background-repeat: repeat-x;
+        @include common-sprite(input-background);
+
+        .ie6 & {
+            background: #fff !important;
+        }
+
+        border: 1px solid #9c9c9c;
+        @include border-radius(5px);
+        @include box-shadow(#ebebeb, 0, -1px, 1px);
+
+        @include transition("border, box-shadow", 0.2s);
+
+        &:focus {
+            outline: none;
+            border: 1px solid #2fc5ff;
+            @include box-shadow(#00b8ff, 0, 0, 5px);
+        }
+    }
+
+    textarea {
+        height: 15em;
+    }
+
+    .element-description {
+        padding: 0 0.5em;
+        color: #666;
+    }
+
+    .element-error {
+        padding: 0 0.5em;
+        color: #f00;
+    }
+}
+
+input:-moz-placeholder
+{
+    color: darkGray;
+}
+
+// Form Customizations
+
+#signup-form {
+    #subdomain-element {
+        .element-input,
+        .element-description
+        {
+            @include inline-block;
+        }
+    }
+
+    #subdomain {
+        width: 180px !important;
+
+        .ie6 &, .ie7 & {
+            width: 120px !important;
+        }
+    }
+
+    #submit-element {
+        height: 3.75em;
+
+        #submit {
+            height: 44px; width: 153px;
+            margin: 6px -3px 6px;
+
+            .ie8 &, .no-ie & {
+                @include image-replacement;
+
+                border: none;
+                background-color: #fff;
+            }
+        }
+    }
+}

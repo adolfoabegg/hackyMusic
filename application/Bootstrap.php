@@ -40,22 +40,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
         Zend_Registry::set('AppConfig', $config);
     }
-
-    /**
-     * Initialize the default database connection
-     * 
-     * @access protected
-     * @return void
-     */
-    protected function _initDb()
-    {
-        $config = Zend_Registry::get('AppConfig');
-        $dbAdapter = Zend_Db::factory($config->resources->db);
-
-        Zend_Db_Table_Abstract::setDefaultAdapter($dbAdapter);
-
-        ZFAdmin_Table_TableAbstract::setGlobalItemsPerPage(5);
-    }
     
 
     /**
