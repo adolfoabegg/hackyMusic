@@ -55,25 +55,58 @@ class YHack_Mapper
 	}
 	
 	/**
-	 * Check if it's sunny
+	 * Returns the proper css class for the background depending on the weather condition.
 	 * 
-	 * @todo implement
 	 * @param numeric $code 
 	 * @access public
 	 * @return bool
 	 */
-	public function isSunny($code)
+	public function getWeatherClass($code)
 	{
 		switch ($code) {
-            case self::MOSTLY_CLOUDY_NIGHT:
-            case self::CLEAR_NIGHT:
+            case self::TORNADO:
+            case self::TROPICAL_STORM:
+            case self::HURRICANE:
+            case self::SEVERE_THUNDERSTORMS:
+            case self::THUNDERSHOWERS:
+                return 'storm';
+            case self::MIXED_RAIN_AND_HAIL:
+            case self::MIXED_RAIN_AND_SLEET:
+            case self::DRIZZLE:
+            case self::FREEZING_RAIN:
+            case self::SHOWERS_1:
+            case self::SHOWERS_2:
+            case self::MIXED_RAIN_AND_SNOW:
+                return 'rain';
+            case self::BLUSTERY:
+            case self::COLD:
+            case self::SNOW_SHOWERS:
+            case self::SNOW:
+            case self::SNOW_FLURRIES:
+            case self::SNOW_SHOWERS:
+            case self::MIXED_SNOW_AND_SLEET:
+            case self::SNOW_FLURRIES:
+            case self::FOGGY:
+            case self::DUST:
+            case self::SMOKY:
+            case self::HAZE:
+            case self::PARTLY_CLOUDY:
             case self::FAIR_NIGHT:
-            case self::PARTLY_CLOUDY_NIGHT:
-                return false;
-                break;
+            case self::CLEAR_NIGHT:
+                return 'night';
+            case self::SUNNY:
+            case self::HOT:
+            case self::CLOUDY:
+            case self::FAIR_DAY:
+            case self::NOT_AVAILABLE:
+                return 'sun';
+            case self::SCATTERED_THUNDERSTORMS_1:
+            case self::SCATTERED_THUNDERSTORMS_2:
+            case self::SEVERE_THUNDERSTORMS:
+            case self::ISOLATED_THUNDERSTORMS:
+                return 'storm';
             default:
-                return true;
-                break;
+                return 'sun';
         }
 	}
     

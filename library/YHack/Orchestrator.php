@@ -72,6 +72,15 @@ class YHack_Orchestrator
     }
     
     /**
+     * Returns the mood mapped to the weather condition
+     * @return string
+     */
+    public function getTag()
+    {
+        return $this->_tag;
+    }
+    
+    /**
      * Single instance of the object
      *
      * @static

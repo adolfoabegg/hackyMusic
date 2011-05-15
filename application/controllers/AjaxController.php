@@ -71,7 +71,9 @@ class AjaxController extends YHack_Controller
 		$data = array(
 			'songs'		=> $songsList,
 			'isDaytime' => $yahooWeather->getIsDaytime(),
-			'isSunny'	=> $mapper->isSunny($weatherCondition),
+			'weatherClass'	=> $mapper->getWeatherClass($weatherCondition),
+            'mood'  => $orchestrator->getTag(),
+            'weatherCondition' => $weatherCondition,
 		);
 
 		$this->view->data = $data;
