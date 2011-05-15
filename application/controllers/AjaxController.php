@@ -17,11 +17,9 @@ class AjaxController extends YHack_Controller
 	 */
 	public function init()
 	{
-		if (!$this->getRequest()->isXmlHttpRequest()) {
+		if (!$this->getRequest()->isXmlHttpRequest() && APPLICATION_ENV != 'development') {
 			$this->_redirect('/');
 		}
-
-		$this->_helper->layout()->setLayout('ajax');
 	}
 
 	/**
@@ -39,7 +37,11 @@ class AjaxController extends YHack_Controller
 		$woeidParser = new YHack_YahooAPI_WoeId();
 		$address	 = $woeidParser->fetchAddressByLatitudeAndLongitude($latitude, $longitude);
 
-		$this->view->address = $address;
+		$orchestrator = YHack_Orchestrator::getInstance();
+        $orchestrator->setAddress($address);
+        $songsList = $orchestrator->getSongsList();
+        
+        $this->_helper->json($songsList);
 	}
 }
 
