@@ -10,9 +10,12 @@
 $blueprint-grid-columns: 21;
 
 @import "html5-boilerplate";
+
 @import "compass/css3";
 @import "compass/utilities/lists";
 @import "compass/utilities/general/clearfix";
+@import "compass/typography/links/unstyled-link";
+
 @import "blueprint";
 @import "blueprint/fancy-type";
 
@@ -42,7 +45,7 @@ body {
     background: transparent image-url('common-nosprite/clouds.rain.jpg') no-repeat;
     background: transparent image-url('common-nosprite/clouds.storm.jpg') no-repeat;
     background: transparent image-url('common-nosprite/clouds.jpg') no-repeat;
-    min-height: 450px;
+    min-height: 600px;
 
     // @include showgrid;
 }
@@ -85,6 +88,8 @@ body {
     @include last;
     @include prepend-top(15.5em);
 
+    position: relative;
+
     width: 494px;
     padding: 7px;
 
@@ -114,7 +119,7 @@ body {
         }
 
         padding-left: 0.5em;
-        padding-right: 0.5em;
+        padding-right: 40px;
 
         .ie6 &, .ie7 & {
             padding: 1em;
@@ -143,7 +148,29 @@ body {
             border: 1px solid #2fc5ff;
             @include box-shadow(#00b8ff, 0, 0, 5px);
         }
+    }
 
+    #spinner {
+        position: absolute;
+        top: 13px; right: 13px;
+        height: 24px; width: 24px;
+        background: transparent image-url('common-nosprite/loading.gif') no-repeat;
+    }
+}
+
+.ui-autocomplete {
+    @include no-bullets;
+    padding: 0;
+
+    width: 450px;
+
+    background: #fff;
+    border: 1px solid #ccc;
+
+    font-size: 1.5em;
+
+    a {
+        @include unstyled-link;
     }
 }
 

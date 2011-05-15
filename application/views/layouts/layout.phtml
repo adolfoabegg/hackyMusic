@@ -25,15 +25,16 @@
             <div id="sun"></div>
 
             <div id="searchbox">
-                <input type="" name="searchbox" placeholder="Type your city to find music matching your weather." value="" />
+                <input id="search" name="search" type="text" placeholder="Type your city to find music matching your weather." autocomplete="off" value="" />
+                <div id="spinner"></div>
             </div>
 
-            <div id="playlist">
+            <div id="playlist" style="display: none;">
                 <div id="songs">
                     <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
                     <div class="viewport">
                         <div class="overview"> 
-                            <div class="song playing" data-video="vx2u5uUu3DE">
+                            <div class="song" data-video="vx2u5uUu3DE">
                                 <img src="http://userserve-ak.last.fm/serve/34s/41161483.png" class="cover" />
                                 <div class="title">Born This Way</div>
                                 <div class="artist">Lady Gaga</div>
@@ -78,10 +79,51 @@
             <div id="tree"></div>
         </div>
         
+        <!-- SCROLLBAR -->
+    
         <script>
             $(function() {
                 $('#songs').tinyscrollbar();
             });
+        </script>
+
+        <!-- CITY -->
+
+        <script>
+            function __highlight(s, t) {
+                var matcher = new RegExp("(" + $.ui.autocomplete.escapeRegex(t) + ")", "ig");
+                return s.replace(matcher, "<strong>$1</strong>");
+            }
+            
+            $('#search').autocomplete({
+                source: function(request, response) {
+                    $.ajax({
+                        url: "http://ws.geonames.org/searchJSON",
+                        dataType: "jsonp",
+                        data: {
+                            featureClass: "P",
+                            style: "full",
+                            maxRows: 5,
+                            name_startsWith: request.term
+                        },
+                        success: function( data ) {
+                            response($.map(data.geonames, function(item) {
+                                return {
+                                    label: __highlight(item.name + ", " + item.countryName, request.term),
+                                    value: item.name + ", " + item.countryName
+                                }
+                            }));
+                        }
+                    });
+                },
+                minLength: 2,
+            }).data( "autocomplete" )._renderItem = function(ul, item) {
+                  // only change here was to replace .text() with .html()
+                  return $( "<li></li>" )
+                        .data( "item.autocomplete", item )
+                        .append( $( "<a></a>" ).html(item.label) )
+                        .appendTo( ul );
+            };
         </script>
 
         <!-- YOUTUBE -->
