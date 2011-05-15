@@ -530,7 +530,7 @@ p.incr,
   font-weight: normal; }
 
 /* line 43, common */
-.common-sprite, #logo, #sun, #searchbox input {
+.common-sprite, #logo, #sun, body.moon #sun, #searchbox input {
   background: url('../images/common-80e356aabb.png') no-repeat; }
 
 /**/
@@ -550,7 +550,7 @@ body {
   *zoom: 1;
   position: relative;
   background: transparent url('../images/common-nosprite/clouds.jpg?1305396699') no-repeat;
-  min-height: 600px; }
+  min-height: 670px; }
 
 /* line 49, ../src/common.scss */
 body.rain {
@@ -582,9 +582,6 @@ body.storm {
 
 /* line 73, ../src/common.scss */
 #sun {
-  background-position: 0 -176px;
-  height: 113px;
-  width: 113px;
   background-position: 0 -289px;
   height: 113px;
   width: 113px;
@@ -593,17 +590,23 @@ body.storm {
   right: 82px; }
 
 /* line 81, ../src/common.scss */
+body.moon #sun {
+  background-position: 0 -176px;
+  height: 113px;
+  width: 113px; }
+
+/* line 86, ../src/common.scss */
 #grass {
   position: absolute;
   top: 450px;
   right: 0;
   bottom: 0;
   left: 0; }
-  /* line 85, ../src/common.scss */
+  /* line 90, ../src/common.scss */
   #grass #grass-top {
     height: 40px;
     background: transparent url('../images/common-nosprite/grass-top.png?1305396390') no-repeat; }
-  /* line 90, ../src/common.scss */
+  /* line 95, ../src/common.scss */
   #grass #grass-bottom {
     position: absolute;
     top: 40px;
@@ -612,7 +615,7 @@ body.storm {
     left: 0;
     background: #38bc04; }
 
-/* line 97, ../src/common.scss */
+/* line 102, ../src/common.scss */
 #searchbox {
   display: inline;
   float: left;
@@ -643,7 +646,7 @@ body.storm {
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
   -o-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4); }
-  /* line 122, ../src/common.scss */
+  /* line 127, ../src/common.scss */
   #searchbox input {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -673,20 +676,20 @@ body.storm {
     -webkit-transition-duration: 0.2s;
     -o-transition-duration: 0.2s;
     transition-duration: 0.2s; }
-    /* line 128, ../src/common.scss */
+    /* line 133, ../src/common.scss */
     .ie6 #searchbox input, .ie7 #searchbox input {
       height: 1em !important;
       width: 80% !important; }
-    /* line 136, ../src/common.scss */
+    /* line 141, ../src/common.scss */
     .ie6 #searchbox input, .ie7 #searchbox input {
       padding: 1em; }
-    /* line 140, ../src/common.scss */
+    /* line 145, ../src/common.scss */
     .ie8 #searchbox input {
       padding: .75em 1em; }
-    /* line 149, ../src/common.scss */
+    /* line 154, ../src/common.scss */
     .ie6 #searchbox input {
       background: #fff !important; }
-    /* line 158, ../src/common.scss */
+    /* line 163, ../src/common.scss */
     #searchbox input:focus {
       outline: none;
       border: 1px solid #2fc5ff;
@@ -694,7 +697,7 @@ body.storm {
       -webkit-box-shadow: 0 0 5px #00b8ff;
       -o-box-shadow: 0 0 5px #00b8ff;
       box-shadow: 0 0 5px #00b8ff; }
-  /* line 165, ../src/common.scss */
+  /* line 170, ../src/common.scss */
   #searchbox #spinner {
     display: none;
     position: absolute;
@@ -704,7 +707,7 @@ body.storm {
     width: 24px;
     background: transparent url('../images/common-nosprite/loading.gif?1305421084') no-repeat; }
 
-/* line 174, ../src/common.scss */
+/* line 179, ../src/common.scss */
 .ui-autocomplete {
   list-style: none;
   padding: 0;
@@ -717,7 +720,7 @@ body.storm {
     list-style-image: none;
     list-style-type: none;
     margin-left: 0px; }
-  /* line 185, ../src/common.scss */
+  /* line 190, ../src/common.scss */
   .ui-autocomplete a {
     color: inherit;
     text-decoration: inherit;
@@ -727,7 +730,7 @@ body.storm {
     .ui-autocomplete a:active, .ui-autocomplete a:focus {
       outline: none; }
 
-/* line 191, ../src/common.scss */
+/* line 196, ../src/common.scss */
 #playlist {
   display: inline;
   float: left;
@@ -763,7 +766,7 @@ body.storm {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
   opacity: 0.9; }
-  /* line 221, ../src/common.scss */
+  /* line 226, ../src/common.scss */
   #playlist #songs {
     position: absolute;
     top: 15px;
@@ -771,20 +774,20 @@ body.storm {
     bottom: 15px;
     left: 15px;
     clear: both; }
-  /* line 227, ../src/common.scss */
+  /* line 232, ../src/common.scss */
   #playlist #songs .viewport {
     width: 350px;
     height: 100%;
     overflow: hidden;
     position: relative; }
-  /* line 228, ../src/common.scss */
+  /* line 233, ../src/common.scss */
   #playlist #songs .overview {
     width: 340px;
     list-style: none;
     position: absolute;
     left: 0;
     top: 0; }
-  /* line 230, ../src/common.scss */
+  /* line 235, ../src/common.scss */
   #playlist #songs .thumb .end,
   #playlist #songs .thumb {
     background: #ffffff;
@@ -801,7 +804,7 @@ body.storm {
     -ms-border-radius: 10px;
     -khtml-border-radius: 10px;
     border-radius: 10px; }
-  /* line 242, ../src/common.scss */
+  /* line 247, ../src/common.scss */
   #playlist #songs .scrollbar {
     background: rgba(0, 0, 0, 0.2);
     -moz-border-radius: 10px;
@@ -813,14 +816,14 @@ body.storm {
     position: relative;
     float: right;
     width: 5px; }
-  /* line 243, ../src/common.scss */
+  /* line 248, ../src/common.scss */
   #playlist #songs .track {
     background-color: transparent;
     height: 100%;
     width: 5px;
     position: relative;
     padding: 0; }
-  /* line 244, ../src/common.scss */
+  /* line 249, ../src/common.scss */
   #playlist #songs .thumb {
     height: 20px;
     width: 5px;
@@ -828,15 +831,15 @@ body.storm {
     overflow: hidden;
     position: absolute;
     top: 0; }
-  /* line 245, ../src/common.scss */
+  /* line 250, ../src/common.scss */
   #playlist #songs .thumb .end {
     overflow: hidden;
     height: 5px;
     width: 5px; }
-  /* line 246, ../src/common.scss */
+  /* line 251, ../src/common.scss */
   #playlist #songs .disable {
     display: none; }
-  /* line 248, ../src/common.scss */
+  /* line 253, ../src/common.scss */
   #playlist .song {
     overflow: hidden;
     *zoom: 1;
@@ -849,7 +852,7 @@ body.storm {
     -o-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
     cursor: pointer; }
-    /* line 258, ../src/common.scss */
+    /* line 263, ../src/common.scss */
     #playlist .song .cover {
       float: left;
       margin: 3px 10px 3px 10px;
@@ -857,7 +860,7 @@ body.storm {
       -webkit-box-shadow: 0 0 3px black;
       -o-box-shadow: 0 0 3px black;
       box-shadow: 0 0 3px black; }
-    /* line 264, ../src/common.scss */
+    /* line 269, ../src/common.scss */
     #playlist .song .title, #playlist .song .artist {
       margin-top: 8px;
       display: -moz-inline-box;
@@ -871,20 +874,20 @@ body.storm {
       /* line 7, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
       #playlist .song .title, #playlist .song .artist {
         *display: inline; }
-    /* line 272, ../src/common.scss */
+    /* line 277, ../src/common.scss */
     #playlist .song .artist {
       margin-left: 5px;
       color: #ccc;
       font-size: 93%; }
-    /* line 279, ../src/common.scss */
+    /* line 284, ../src/common.scss */
     #playlist .song.playing .title {
       text-shadow: white 0 0 5px; }
 
-/* line 286, ../src/common.scss */
+/* line 291, ../src/common.scss */
 #youtube {
   text-align: center; }
 
-/* line 290, ../src/common.scss */
+/* line 295, ../src/common.scss */
 #tree {
   position: absolute;
   top: 317px;
@@ -893,21 +896,18 @@ body.storm {
   width: 114px;
   background: url('../images/common-nosprite/tree.png?1305407658') no-repeat; }
 
-/* line 297, ../src/common.scss */
+/* line 302, ../src/common.scss */
 footer {
-  display: inline;
-  float: left;
-  position: relative;
-  margin: 0 -80px 1.5em 80px;
-  padding-right: 40px;
-  margin-right: 0;
-  margin-top: 6em;
-  margin-bottom: 1em;
+  position: absolute;
+  left: 0;
+  bottom: 20px;
+  right: 0;
+  text-align: center;
   color: #fff;
   font-size: 93%;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
   opacity: 0.8; }
-  /* line 308, ../src/common.scss */
+  /* line 312, ../src/common.scss */
   footer a, footer a:hover, footer a:visited {
     color: #fff; }

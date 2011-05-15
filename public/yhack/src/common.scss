@@ -41,7 +41,7 @@ body {
     @include container;
     position: relative;
     background: transparent image-url('common-nosprite/clouds.jpg') no-repeat;
-    min-height: 600px;
+    min-height: 670px;
 
     // @include showgrid;
 }
@@ -71,11 +71,16 @@ body.storm {
 }
 
 #sun {
-    @include common-sprite(moon, true);
     @include common-sprite(sun, true);
 
     position: absolute;
     top: 45px; right: 82px;
+}
+
+body.moon {
+    #sun {
+        @include common-sprite(moon, true);
+    }
 }
 
 #grass {
@@ -295,11 +300,10 @@ body.storm {
 }
 
 footer {
-    @include push(2);
-    @include append(1);
-    @include last;
-    @include prepend-top(6em);
-    @include append-bottom(1em);
+    position: absolute;
+    left: 0; bottom: 20px; right: 0;
+
+    text-align: center;
 
     color: #fff;
     font-size: 93%;

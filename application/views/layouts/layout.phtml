@@ -28,7 +28,7 @@
                 <div id="spinner"></div>
             </div>
 
-            <div id="playlist" style="opacity: 0;">
+            <div id="playlist" style="display: none;">
                 <div id="songs">
                     <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
                     <div class="viewport">
@@ -82,6 +82,7 @@
                     <a href="http://developer.yahoo.com/weather/">Yahoo Weather</a>,
                     <a href="http://www.last.fm/api">Last.fm</a>,
                     <a href="http://www.jquery.com/">jQuery</a>,
+                    <a href="http://compass-style.org/">Sass</a>,
                     <a href="http://code.google.com/apis/youtube/">YouTube</a>,
                     <a href="http://www.geonames.org/export/ws-overview.html">Geonames.org</a>
                     and Red Bull.
@@ -93,9 +94,8 @@
         <!-- SCROLLBAR -->
     
         <script>
-            $(function() {
-                $('#songs').tinyscrollbar();
-            });
+            var scrollport = $('#songs');
+            scrollport.tinyscrollbar();
         </script>
 
         <!-- CITY -->
@@ -172,10 +172,6 @@
                     yHack.play($('.song.playing').next());
                 }
             }
-
-            $('.song').click(function() {
-                yHack.play($(this));
-            });
         </script>
     </body>
 </html>

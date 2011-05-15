@@ -18,7 +18,7 @@ yHack = {
                         },
 						success : function(response) {
 							$('#search').val(response);
-							this.search();
+							yHack.search();
 						}
 					});
 				},
@@ -49,10 +49,37 @@ yHack = {
                 address: $('#search').val()
             },
             success : function(response) {
-                this.hideSpinner();
+                yHack.hideSpinner();
+
+                $('#playlist .overview').empty();
+
+                for (var i in response['songs']) {
+                    yHack.addSong(response['songs'][i]);
+                }
+
+                $('.song').click(function() {
+                    yHack.play($(this));
+                });
+
+                $('#playlist').fadeIn();
+                scrollport.tinyscrollbar_update();
+
+                yHack.play($('#playlist .song').first());
             }
         });
 	},
+
+    addSong : function(e) {
+        var song = $(
+            '<div class="song" data-video="' + e['youtubeId'] + '">' +
+                '<img width="34" src="' + e['albumImage'] + '" class="cover" />' +
+                '<div class="title">' + e['track'] + '</div>' +
+                '<div class="artist">' + e['artist'] + '</div>' +
+            '</div>'
+        );
+
+        $('#playlist .overview').append(song);
+    },
 
     play : function(nextSong) {
         var lastSong = $('.song.playing');
