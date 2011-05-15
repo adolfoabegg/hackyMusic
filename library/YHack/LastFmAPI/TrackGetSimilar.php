@@ -58,7 +58,8 @@ class YHack_LastFmAPI_TrackGetSimilar extends YHack_LastFmAPI_Abstract
     
     /**
      * Gets the top tracks for the given tag.
-     * Returns an array with the top tracks
+     * Returns an array with the top tracks.
+     * The result is limited by the value of lastfm.similartracks.limit in the application.ini file
      * 
      * @param string $tag
      * @return array 
@@ -70,10 +71,12 @@ class YHack_LastFmAPI_TrackGetSimilar extends YHack_LastFmAPI_Abstract
             $this->_artist = $artist;
         }
         
+        $config = Zend_Registry::get('AppConfig');
+        
         $parameters = array(
             'track'   =>  $this->_track,
             'artist'  =>  $this->_artist,
-            'autocorrect' => 1,
+            'limit'   => $config->lastfm->tracks->limit,
         );
         
         /* @var $simpleXmlObject SimpleXMLElement */
@@ -92,7 +95,7 @@ class YHack_LastFmAPI_TrackGetSimilar extends YHack_LastFmAPI_Abstract
             $tracks[] = array(
                 'track'     => $track->name,
                 'artist'    => $track->artist->name,
-                'albumImage'=> $track->image[1],//medium image
+                'albumImage'=> $track->image[0],//smallest image
             );
         }
         

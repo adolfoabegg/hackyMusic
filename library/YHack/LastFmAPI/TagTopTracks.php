@@ -53,8 +53,11 @@ class YHack_LastFmAPI_TagTopTracks extends YHack_LastFmAPI_Abstract
             $this->_tag = $tag;
         }
         
+        $config = Zend_Registry::get('AppConfig');
+        
         $parameters = array(
             'tag'   =>  $this->_tag,
+            'limit' =>  $config->lastfm->tracks->limit * 4,//we don't want the same songs all the time
         );
         
         /* @var $simpleXmlObject SimpleXMLElement */
@@ -73,11 +76,15 @@ class YHack_LastFmAPI_TagTopTracks extends YHack_LastFmAPI_Abstract
             $tracks[] = array(
                 'track'     => $track->name,
                 'artist'    => $track->artist->name,
-                'albumImage'=> $track->image[1],//medium image
+                'albumImage'=> $track->image[0],//smallest image
             );
         }
         
-        return $tracks;       
+        //we don't want the same songs all the time
+        shuffle($tracks);
+        $finalTracks = array_slice($tracks, 1, $config->lastfm->tracks->limit, true);
+        
+        return $finalTracks;       
     }
 
     
