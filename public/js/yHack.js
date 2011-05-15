@@ -65,6 +65,12 @@ yHack = {
                 scrollport.tinyscrollbar_update();
 
                 yHack.play($('#playlist .song').first());
+
+                $('body')[0].className = response['weatherClass'];
+
+                if (!response['isDaytime']) {
+                    $('body').addClass('moon');
+                }
             }
         });
 	},
