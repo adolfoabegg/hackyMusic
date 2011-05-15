@@ -129,6 +129,9 @@ class YHack_Orchestrator
         $finalSongsList = array();
         $youtubeSearchService = new YHack_YahooYql_YoutubeSearch();
         foreach($topSongsByTag as $song) {
+            if ((trim($song['track']) == '' && trim($song['artist']) == '') || trim($song['albumImage']) == '') {
+                continue;
+            }
             $youtubeQuery = (string) $song['track'] . ' ' . (string) $song['artist'];
             $youtubeSearchService->setQuery($youtubeQuery);
             $youtubeJsonResponse = $youtubeSearchService->run();
@@ -184,7 +187,7 @@ class YHack_Orchestrator
     protected function _mapWeatherConditionToTag()
     {
         
-        return YHack_Mapper::getInstance()->mapToMood($this->_weatherCondition); 
+        $this->_tag = YHack_Mapper::getInstance()->mapToMood($this->_weatherCondition); 
     }
     
     /**
@@ -196,7 +199,6 @@ class YHack_Orchestrator
     {
         $lastFmSongsByTag = new YHack_LastFmAPI_TagTopTracks(array('tag' => $this->_tag));
         $songsList = $lastFmSongsByTag->topTracks();
-        
         return $songsList;
     }
     

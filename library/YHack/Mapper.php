@@ -92,7 +92,6 @@ class YHack_Mapper
             case self::SEVERE_THUNDERSTORMS:
             case self::THUNDERSHOWERS:
                 return 'tense';
-                break;
             case self::MIXED_RAIN_AND_HAIL:
             case self::MIXED_RAIN_AND_SLEET:
             case self::DRIZZLE:
