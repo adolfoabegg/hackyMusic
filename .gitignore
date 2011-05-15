@@ -14,3 +14,5 @@ application/configs/environment.php
 application/configs/environment.ini
 .sass-cache/
 *.py[co]
+application/controllers/localTestController.php
+applicatoin/views/scripts/local-test
