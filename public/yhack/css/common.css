@@ -534,17 +534,17 @@ p.incr,
   background: url('../images/common-80e356aabb.png') no-repeat; }
 
 /**/
-/* line 29, ../src/common.scss */
+/* line 32, ../src/common.scss */
 html {
   overflow-y: auto; }
 
-/* line 33, ../src/common.scss */
+/* line 36, ../src/common.scss */
 body {
   background: #7195a4;
   background: #154c77;
   background: #31abde; }
 
-/* line 39, ../src/common.scss */
+/* line 42, ../src/common.scss */
 #container {
   width: 830px;
   margin: 0 auto;
@@ -554,9 +554,9 @@ body {
   background: transparent url('../images/common-nosprite/clouds.rain.jpg?1305409195') no-repeat;
   background: transparent url('../images/common-nosprite/clouds.storm.jpg?1305410842') no-repeat;
   background: transparent url('../images/common-nosprite/clouds.jpg?1305396699') no-repeat;
-  min-height: 450px; }
+  min-height: 600px; }
 
-/* line 50, ../src/common.scss */
+/* line 53, ../src/common.scss */
 #logo {
   text-indent: -119988px;
   overflow: hidden;
@@ -570,7 +570,7 @@ body {
   top: 60px;
   left: 67px; }
 
-/* line 58, ../src/common.scss */
+/* line 61, ../src/common.scss */
 #sun {
   background-position: 0 -176px;
   height: 113px;
@@ -582,18 +582,18 @@ body {
   top: 45px;
   right: 82px; }
 
-/* line 66, ../src/common.scss */
+/* line 69, ../src/common.scss */
 #grass {
   position: absolute;
   top: 450px;
   right: 0;
   bottom: 0;
   left: 0; }
-  /* line 70, ../src/common.scss */
+  /* line 73, ../src/common.scss */
   #grass #grass-top {
     height: 40px;
     background: transparent url('../images/common-nosprite/grass-top.png?1305396390') no-repeat; }
-  /* line 75, ../src/common.scss */
+  /* line 78, ../src/common.scss */
   #grass #grass-bottom {
     position: absolute;
     top: 40px;
@@ -602,7 +602,7 @@ body {
     left: 0;
     background: #38bc04; }
 
-/* line 82, ../src/common.scss */
+/* line 85, ../src/common.scss */
 #searchbox {
   display: inline;
   float: left;
@@ -611,6 +611,7 @@ body {
   padding-right: 160px;
   margin-right: 0;
   margin-top: 15.5em;
+  position: relative;
   width: 494px;
   padding: 7px;
   border: 1px solid rgba(0, 0, 0, 0.15);
@@ -632,7 +633,7 @@ body {
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
   -o-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4); }
-  /* line 105, ../src/common.scss */
+  /* line 110, ../src/common.scss */
   #searchbox input {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -642,7 +643,7 @@ body {
     width: 100%;
     font-size: 1.5em;
     padding-left: 0.5em;
-    padding-right: 0.5em;
+    padding-right: 40px;
     background-color: #fff;
     background-repeat: repeat-x;
     background-position: 0 0;
@@ -662,20 +663,20 @@ body {
     -webkit-transition-duration: 0.2s;
     -o-transition-duration: 0.2s;
     transition-duration: 0.2s; }
-    /* line 111, ../src/common.scss */
+    /* line 116, ../src/common.scss */
     .ie6 #searchbox input, .ie7 #searchbox input {
       height: 1em !important;
       width: 80% !important; }
-    /* line 119, ../src/common.scss */
+    /* line 124, ../src/common.scss */
     .ie6 #searchbox input, .ie7 #searchbox input {
       padding: 1em; }
-    /* line 123, ../src/common.scss */
+    /* line 128, ../src/common.scss */
     .ie8 #searchbox input {
       padding: .75em 1em; }
-    /* line 132, ../src/common.scss */
+    /* line 137, ../src/common.scss */
     .ie6 #searchbox input {
       background: #fff !important; }
-    /* line 141, ../src/common.scss */
+    /* line 146, ../src/common.scss */
     #searchbox input:focus {
       outline: none;
       border: 1px solid #2fc5ff;
@@ -683,8 +684,38 @@ body {
       -webkit-box-shadow: 0 0 5px #00b8ff;
       -o-box-shadow: 0 0 5px #00b8ff;
       box-shadow: 0 0 5px #00b8ff; }
+  /* line 153, ../src/common.scss */
+  #searchbox #spinner {
+    position: absolute;
+    top: 13px;
+    right: 13px;
+    height: 24px;
+    width: 24px;
+    background: transparent url('../images/common-nosprite/loading.gif?1305421084') no-repeat; }
 
-/* line 150, ../src/common.scss */
+/* line 161, ../src/common.scss */
+.ui-autocomplete {
+  list-style: none;
+  padding: 0;
+  width: 450px;
+  background: #fff;
+  border: 1px solid #ccc;
+  font-size: 1.5em; }
+  /* line 11, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/typography/lists/_bullets.scss */
+  .ui-autocomplete li {
+    list-style-image: none;
+    list-style-type: none;
+    margin-left: 0px; }
+  /* line 172, ../src/common.scss */
+  .ui-autocomplete a {
+    color: inherit;
+    text-decoration: inherit;
+    cursor: inherit; }
+    /* line 6, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/typography/links/_unstyled-link.scss */
+    .ui-autocomplete a:active, .ui-autocomplete a:focus {
+      outline: none; }
+
+/* line 177, ../src/common.scss */
 #playlist {
   display: inline;
   float: left;
@@ -720,7 +751,7 @@ body {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
   opacity: 0.9; }
-  /* line 180, ../src/common.scss */
+  /* line 207, ../src/common.scss */
   #playlist #songs {
     position: absolute;
     top: 15px;
@@ -728,20 +759,20 @@ body {
     bottom: 15px;
     left: 15px;
     clear: both; }
-  /* line 186, ../src/common.scss */
+  /* line 213, ../src/common.scss */
   #playlist #songs .viewport {
     width: 350px;
     height: 100%;
     overflow: hidden;
     position: relative; }
-  /* line 187, ../src/common.scss */
+  /* line 214, ../src/common.scss */
   #playlist #songs .overview {
     width: 340px;
     list-style: none;
     position: absolute;
     left: 0;
     top: 0; }
-  /* line 189, ../src/common.scss */
+  /* line 216, ../src/common.scss */
   #playlist #songs .thumb .end,
   #playlist #songs .thumb {
     background: #ffffff;
@@ -758,7 +789,7 @@ body {
     -ms-border-radius: 10px;
     -khtml-border-radius: 10px;
     border-radius: 10px; }
-  /* line 201, ../src/common.scss */
+  /* line 228, ../src/common.scss */
   #playlist #songs .scrollbar {
     background: rgba(0, 0, 0, 0.2);
     -moz-border-radius: 10px;
@@ -770,14 +801,14 @@ body {
     position: relative;
     float: right;
     width: 5px; }
-  /* line 202, ../src/common.scss */
+  /* line 229, ../src/common.scss */
   #playlist #songs .track {
     background-color: transparent;
     height: 100%;
     width: 5px;
     position: relative;
     padding: 0; }
-  /* line 203, ../src/common.scss */
+  /* line 230, ../src/common.scss */
   #playlist #songs .thumb {
     height: 20px;
     width: 5px;
@@ -785,15 +816,15 @@ body {
     overflow: hidden;
     position: absolute;
     top: 0; }
-  /* line 204, ../src/common.scss */
+  /* line 231, ../src/common.scss */
   #playlist #songs .thumb .end {
     overflow: hidden;
     height: 5px;
     width: 5px; }
-  /* line 205, ../src/common.scss */
+  /* line 232, ../src/common.scss */
   #playlist #songs .disable {
     display: none; }
-  /* line 207, ../src/common.scss */
+  /* line 234, ../src/common.scss */
   #playlist .song {
     overflow: hidden;
     *zoom: 1;
@@ -806,7 +837,7 @@ body {
     -o-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
     cursor: pointer; }
-    /* line 217, ../src/common.scss */
+    /* line 244, ../src/common.scss */
     #playlist .song .cover {
       float: left;
       margin: 3px 10px 3px 10px;
@@ -814,7 +845,7 @@ body {
       -webkit-box-shadow: 0 0 3px black;
       -o-box-shadow: 0 0 3px black;
       box-shadow: 0 0 3px black; }
-    /* line 223, ../src/common.scss */
+    /* line 250, ../src/common.scss */
     #playlist .song .title, #playlist .song .artist {
       margin-top: 8px;
       display: -moz-inline-box;
@@ -828,20 +859,20 @@ body {
       /* line 7, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
       #playlist .song .title, #playlist .song .artist {
         *display: inline; }
-    /* line 231, ../src/common.scss */
+    /* line 258, ../src/common.scss */
     #playlist .song .artist {
       margin-left: 5px;
       color: #ccc;
       font-size: 93%; }
-    /* line 238, ../src/common.scss */
+    /* line 265, ../src/common.scss */
     #playlist .song.playing .title {
       text-shadow: white 0 0 5px; }
 
-/* line 245, ../src/common.scss */
+/* line 272, ../src/common.scss */
 #youtube {
   text-align: center; }
 
-/* line 249, ../src/common.scss */
+/* line 276, ../src/common.scss */
 #tree {
   position: absolute;
   top: 317px;
