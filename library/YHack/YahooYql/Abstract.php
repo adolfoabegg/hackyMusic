@@ -1,14 +1,16 @@
 <?php
 /**
  * A simple class that wraps Yahoo!'s Yql
+ * Use it as the base class to query Yql's datasets
  *
  * @category YHack
  * @package YahooYql
  * @copyright Codefathers team
  */
 
-class YHack_YahooYql_Query 
+abstract class YHack_YahooYql_Abstract 
 {
+    const YQL_ENDPOINT = 'http://query.yahooapis.com/v1/public/yql';
     const FILTER_CONJUNCTION = 'AND';
     const FILTER_DISJUNCTION = 'OR';
     
@@ -54,6 +56,13 @@ class YHack_YahooYql_Query
      * @var string
      */
     protected $_format = 'json';
+    
+    /**
+     * The last resultset.
+     * 
+     * @var string
+     */
+    protected $_result = null;
     
     /**
      * Sets the data set to query
@@ -120,6 +129,15 @@ class YHack_YahooYql_Query
     }
     
     /**
+     * Returns the result of the last query
+     * @return string
+     */
+    public function getResult()
+    {
+        return $this->_result;
+    }
+    
+    /**
      * Constructor
      * 
      * @param array|Zend_Config $config
@@ -160,16 +178,19 @@ class YHack_YahooYql_Query
      */
     public function run()
     {
-        $client = new Zend_Rest_Client('http://query.yahooapis.com/v1/public/yql');
+        $client = new Zend_Http_Client(self::YQL_ENDPOINT);
         $columns = implode(', ', $this->_columns);
         $filters = '';
         if (count($filters) > 0) {
             $filters = ' WHERE ' . implode($this->_filterType . ' ', $this->_filters);
         }
-        $client->q('SELECT ' . $this->_dataset . ' FROM ' . $this->_dataset . $filters . ' LIMIT ' . $this->_limit);
-        $client->format($this->_format);
-        $result = $client->get();
-        
-        return $result;
+        $parameters = array(
+            'q' => 'SELECT ' . implode(', ', $this->_columns) . ' FROM ' . $this->_dataset . $filters . ' LIMIT ' . $this->_limit,
+            'format' => $this->_format,
+            'env' => 'store://datatables.org/alltableswithkeys',
+        );
+        $client->setParameterGet($parameters);
+        $this->_result = $client->request('GET')->getBody();
+        return $this->_result;
     }
 }
