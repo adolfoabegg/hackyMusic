@@ -34,20 +34,32 @@ html {
 }
 
 body {
-    background: #7195a4;
-    background: #154c77;
     background: #31abde;
 }
 
 #container {
     @include container;
     position: relative;
-    background: transparent image-url('common-nosprite/clouds.rain.jpg') no-repeat;
-    background: transparent image-url('common-nosprite/clouds.storm.jpg') no-repeat;
     background: transparent image-url('common-nosprite/clouds.jpg') no-repeat;
     min-height: 600px;
 
     // @include showgrid;
+}
+
+body.rain {
+    background: #7195a4;
+
+    #container {
+        background: transparent image-url('common-nosprite/clouds.rain.jpg') no-repeat;
+    }
+}
+
+body.storm {
+    background: #154c77;
+
+    #container {
+        background: transparent image-url('common-nosprite/clouds.storm.jpg') no-repeat;
+    }
 }
 
 #logo {
@@ -151,6 +163,7 @@ body {
     }
 
     #spinner {
+        display: none;
         position: absolute;
         top: 13px; right: 13px;
         height: 24px; width: 24px;
@@ -171,6 +184,7 @@ body {
 
     a {
         @include unstyled-link;
+        cursor: pointer;
     }
 }
 
@@ -278,4 +292,20 @@ body {
     top: 317px; left: 80px;
     height: 231px; width: 114px;
     background: image-url('common-nosprite/tree.png') no-repeat;
+}
+
+footer {
+    @include push(2);
+    @include append(1);
+    @include last;
+    @include prepend-top(6em);
+    @include append-bottom(1em);
+
+    color: #fff;
+    font-size: 93%;
+    @include opacity(0.8);
+
+    a, a:hover, a:visited {
+        color: #fff;
+    }
 }

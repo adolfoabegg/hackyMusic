@@ -1,8 +1,9 @@
 <?
     $this->headLink()->prependStylesheet('/yhack/css/common.css');
     $this->headScript()->appendFile('/yhack/js/jquery.tinyscrollbar.min.js');
-    $this->headScript()->appendFile('http://www.youtube.com/player_api');
+    $this->headScript()->appendFile('/yhack/js/jquery.cookie.js');
     $this->headScript()->appendFile('/js/yHack.js');
+    $this->headScript()->appendFile('http://www.youtube.com/player_api');
 ?>
 <html>
     <head>
@@ -11,8 +12,6 @@
 
         <?= $this->jQuery() ?>
         <?= $this->headScript() ?>
-
-        
     </head>
     <body>
         <div id="grass">
@@ -29,7 +28,7 @@
                 <div id="spinner"></div>
             </div>
 
-            <div id="playlist">
+            <div id="playlist" style="opacity: 0;">
                 <div id="songs">
                     <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
                     <div class="viewport">
@@ -69,14 +68,26 @@
                 </div>
             </div>
 
-            <div id="youtube">
+            <div id="youtube" style="display: none;">
             </div>
 
-            <!--
-                <iframe width="300" height="27" src="http://www.youtube.com/embed/wV1FrqwZyKw?version=3&fs=0&enablejsapi=1&playlist=wV1FrqwZyKw,vx2u5uUu3DE,s86K-p089R8" frameborder="0" allowfullscreen></iframe>
-            -->
-
             <div id="tree"></div>
+
+            <footer>
+                Built for the <a href="http://openhackeu2011.eventbrite.com/">Yahoo! Open Hack Europe 2011</a> by
+                    <a href="http://blog.motane.lu/">Tudor</a>,
+                    <a href="http://twitter.com/adolfoabegg">Adolfo</a> and
+                    <a href="http://www.helpdeskhq.com/">Alex</a>.<br/>
+                Uses <a href="http://developer.yahoo.com/yql/">YQL</a>,
+                    <a href="http://developer.yahoo.com/weather/">Yahoo Weather</a>,
+                    <a href="http://www.last.fm/api">Last.fm</a>,
+                    <a href="http://www.jquery.com/">jQuery</a>,
+                    <a href="http://code.google.com/apis/youtube/">YouTube</a>,
+                    <a href="http://www.geonames.org/export/ws-overview.html">Geonames.org</a>
+                    and Red Bull.
+                    Built with <a href="http://framework.zend.com/">Zend Framework</a>.
+                    Available on <a href="https://github.com/adolfoabegg/hackyMusic">GitHub</a>.
+            </footer>
         </div>
         
         <!-- SCROLLBAR -->
@@ -90,11 +101,6 @@
         <!-- CITY -->
 
         <script>
-            function __highlight(s, t) {
-                var matcher = new RegExp("(" + $.ui.autocomplete.escapeRegex(t) + ")", "ig");
-                return s.replace(matcher, "<strong>$1</strong>");
-            }
-            
             $('#search').autocomplete({
                 source: function(request, response) {
                     $.ajax({
@@ -109,7 +115,7 @@
                         success: function( data ) {
                             response($.map(data.geonames, function(item) {
                                 return {
-                                    label: __highlight(item.name + ", " + item.countryName, request.term),
+                                    label: yHack.highlightAutocompleteItem(item.name + ", " + item.countryName, request.term),
                                     value: item.name + ", " + item.countryName
                                 }
                             }));
@@ -117,6 +123,16 @@
                     });
                 },
                 minLength: 2,
+                search: function() {
+                    yHack.showSpinner();
+                },
+                open: function() {
+                    yHack.hideSpinner();
+                },
+                select: function(event, ui) {
+                    $.cookie('customLocation', ui.item.value)
+                    yHack.search();
+                }
             }).data( "autocomplete" )._renderItem = function(ul, item) {
                   // only change here was to replace .text() with .html()
                   return $( "<li></li>" )
@@ -151,32 +167,15 @@
                 // event.target.playVideo();
             }
 
-            var done = false;
-
             function onPlayerStateChange(event) {
                 if (event.data == YT.PlayerState.ENDED) {
-                    play($('.song.playing').next());
+                    yHack.play($('.song.playing').next());
                 }
             }
 
             $('.song').click(function() {
-                play($(this));
+                yHack.play($(this));
             });
-
-            function play(nextSong) {
-                var lastSong = $('.song.playing');
-                lastSong.removeClass('playing');
-
-                if (nextSong) {
-                    if (nextSong.data('start')) {
-                        player.loadVideoById(nextSong.data('video'), nextSong.data('start'));
-                    } else {
-                        player.loadVideoById(nextSong.data('video'));
-                    }
-
-                    nextSong.addClass('playing');
-                }
-            }
         </script>
     </body>
 </html>
