@@ -49,13 +49,29 @@ class AjaxController extends YHack_Controller
 	 */
 	public function fetchSongsAction()
 	{
-		$address = $this->_getParam('address');
+		$address      = $this->_getParam('address');
+
+		$yahooWoeId   = new YHack_YahooAPI_WoeId();
+		$woeId        = $yahooWoeId->fetchByAddress($address);
+		$yahooWeather = new YHack_YahooAPI_Weather(array('woeid' => $woeId));
+
+        try {
+            $weatherCondition = $yahooWeather->getCode();
+        } catch (YHack_YahooAPI_Exception_LocationNotFound $e) {
+            $weatherCondition = 'unknown';
+        }
 
 		$orchestrator = YHack_Orchestrator::getInstance();
-        $orchestrator->setAddress($address);
+        $orchestrator->setWeatherCondition($weatherCondition);
         $songsList = $orchestrator->getSongsList();
-        
-        $this->_helper->json($songsList);
+
+		$data = array(
+			'songs'		=> $songsList,
+			'isDaytime' => $yahooWeather->getIsDaytime(),
+			'isSunny'	=> true,
+		);
+
+		$this->view->data = $data;
 	}
 }
 

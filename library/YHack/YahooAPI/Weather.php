@@ -16,6 +16,14 @@ class YHack_YahooAPI_Weather extends YHack_YahooAPI_Abstract
     const RSS_URL = 'http://weather.yahooapis.com/forecastrss';
 
     /**
+     * Downloaded XML data
+     * 
+     * @var SimpleXMLElement
+     * @access protected
+     */
+    protected $_xml;
+
+    /**
      * Yahoo! "Where on Earth" location ID
      * 
      * @var numeric
@@ -51,23 +59,70 @@ class YHack_YahooAPI_Weather extends YHack_YahooAPI_Abstract
      */
     public function getCode()
     {
-        $request  = self::RSS_URL . '?w=' . $this->getWoeid() . '&u=' . $this->getUnit();
-        $response = file_get_contents($request);
-
-        $xml = new SimpleXMLElement($response);
-        if ((string) $xml->channel->item->title == 'City not found') {
-            throw new YHack_YahooAPI_Exception_LocationNotFound();
-        }
-
-        $xml->registerXPathNamespace(
-            'yweather',
-            'http://xml.weather.yahoo.com/ns/rss/1.0'
-        );
+        $xml = $this->_getXml();
 
         $condition  = $xml->xpath('//yweather:condition');
         $attributes = $condition[0]->attributes();
 
         return (int) $attributes['code'];
+    }
+
+    /**
+     * Get datetime status of the given location
+     * 
+     * @access public
+     * @return void
+     */
+    public function getIsDaytime()
+    {
+        $xml = $this->_getXml();
+
+        $astronomy  = $xml->xpath('//yweather:astronomy');
+        $attributes = $astronomy[0]->attributes();
+        $sunrise    = (string) $attributes['sunrise'];
+        $sunset     = (string) $attributes['sunset'];
+
+        $condition  = $xml->xpath('//yweather:condition');
+        $attributes = $condition[0]->attributes();
+        $date       = (string) $attributes['date'];
+
+        $time    = new Zend_Date($date);
+        $sunrise = new Zend_Date($sunrise, Zend_Date::TIMES);
+        $sunset  = new Zend_Date($sunset, Zend_Date::TIMES);
+
+        if ($sunset->compare($time, Zend_Date::TIMES) == 1 && $time->compare($sunset, Zend_Date::TIMES) == -1) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Get the xml
+     * 
+     * @access protected
+     * @return SimpleXMLElement
+     */
+    protected function _getXml()
+    {
+        if (null === $this->_xml) {
+            $request  = self::RSS_URL . '?w=' . $this->getWoeid() . '&u=' . $this->getUnit();
+            $response = file_get_contents($request);
+
+            $xml = new SimpleXMLElement($response);
+            if ((string) $xml->channel->item->title == 'City not found') {
+                throw new YHack_YahooAPI_Exception_LocationNotFound();
+            }
+
+            $xml->registerXPathNamespace(
+                'yweather',
+                'http://xml.weather.yahoo.com/ns/rss/1.0'
+            );
+            
+            $this->_xml = $xml;
+        }
+
+        return $this->_xml;
     }
 
     /**

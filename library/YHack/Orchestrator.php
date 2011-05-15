@@ -112,7 +112,7 @@ class YHack_Orchestrator
      * - The mood mapped to the weather condition
      * 
      * Returns an array of songs, each song will contain this info:
-     * - the song's itle
+     * - the song's title
      * - the song's artist
      * - the url to the picture of the song's album
      * - the youtube's id of the song at youtube.com
@@ -121,12 +121,6 @@ class YHack_Orchestrator
      */
     public function getSongsList()
     {
-        if (empty($this->_latitude) || empty($this->_latitude)) {
-            throw new Zend_Exception('You must the the user\'s latitude and longitude.');
-        }
-        
-        $this->_getWeatherCondition();
-        
         $this->_mapWeatherConditionToTag();
         
         $topSongsByTag = $this->_getSongListByTag();
@@ -135,7 +129,7 @@ class YHack_Orchestrator
         $finalSongsList = array();
         $youtubeSearchService = new YHack_YahooYql_YoutubeSearch();
         foreach($topSongsByTag as $song) {
-            $youtubeQuery = $song['track'] . ' ' . $song['artist'];
+            $youtubeQuery = (string) $song['track'] . ' ' . (string) $song['artist'];
             $youtubeSearchService->setQuery($youtubeQuery);
             $youtubeJsonResponse = $youtubeSearchService->run();
             $resultArray = Zend_Json::decode($youtubeJsonResponse);
@@ -146,35 +140,41 @@ class YHack_Orchestrator
             $httpParts = parse_url($videoUrl);
             $httpParams = parse_str($httpParts);
             $song['youtubeId'] = $httpParams['v'];
+
+			foreach ($song as $key => $value) {
+				$song[$key] = (string) $value;
+			}
+
             $finalSongsList[] = $song;
         }
         
         return $finalSongsList;
     }
     
-    /**
-     * Gets the weather condition using the user's position.
-     * 
-     * @return void
-     */
-    protected function _getWeatherCondition()
-    {
-        $yahooWoeId = new YHack_YahooAPI_WoeId();
-        $woeId = -1;
-        if (!empty($this->_latitude) && !empty($this->_longitude)) {
-            $woeidParser = new YHack_YahooAPI_WoeId();
-            $$this->_address = $woeidParser->fetchAddressByLatitudeAndLongitude($this->_latitude, $this->_longitude);
-        }
-        $woeId = $yahooWoeId->fetchByAddress($this->_address);
-        $yahooWeather = new YHack_YahooAPI_Weather(array('woeid' => $woeId));
-        
-        try {
-            $this->_weatherCondition = $yahooWeather->getCode();
-        } catch (YHack_YahooAPI_Exception_LocationNotFound $e) {
-            $this->_weatherCondition = 'unknown';
-        }
-    }
-    
+	/**
+	 * Get the weather condition
+	 *
+	 * @access public
+	 * @return numeric
+	 */
+	public function getWeatherCondition()
+	{
+		return $this->_weatherCondition;	
+	}
+	
+	/**
+	 * Set the weather condition
+	 *
+	 * @param numeric $weatherCondition
+	 * @access public
+	 * @return YHack_Orchestrator
+	 */
+	public function setWeatherCondition($weatherCondition)
+	{
+		$this->_weatherCondition = $weatherCondition;
+		return $this;
+	}
+
     /**
      * Maps the weather condition of the user's city to a tag (mood)
      * 
