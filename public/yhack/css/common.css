@@ -540,23 +540,33 @@ html {
 
 /* line 36, ../src/common.scss */
 body {
-  background: #7195a4;
-  background: #154c77;
   background: #31abde; }
 
-/* line 42, ../src/common.scss */
+/* line 40, ../src/common.scss */
 #container {
   width: 830px;
   margin: 0 auto;
   overflow: hidden;
   *zoom: 1;
   position: relative;
-  background: transparent url('../images/common-nosprite/clouds.rain.jpg?1305409195') no-repeat;
-  background: transparent url('../images/common-nosprite/clouds.storm.jpg?1305410842') no-repeat;
   background: transparent url('../images/common-nosprite/clouds.jpg?1305396699') no-repeat;
   min-height: 600px; }
 
-/* line 53, ../src/common.scss */
+/* line 49, ../src/common.scss */
+body.rain {
+  background: #7195a4; }
+  /* line 52, ../src/common.scss */
+  body.rain #container {
+    background: transparent url('../images/common-nosprite/clouds.rain.jpg?1305409195') no-repeat; }
+
+/* line 57, ../src/common.scss */
+body.storm {
+  background: #154c77; }
+  /* line 60, ../src/common.scss */
+  body.storm #container {
+    background: transparent url('../images/common-nosprite/clouds.storm.jpg?1305410842') no-repeat; }
+
+/* line 65, ../src/common.scss */
 #logo {
   text-indent: -119988px;
   overflow: hidden;
@@ -570,7 +580,7 @@ body {
   top: 60px;
   left: 67px; }
 
-/* line 61, ../src/common.scss */
+/* line 73, ../src/common.scss */
 #sun {
   background-position: 0 -176px;
   height: 113px;
@@ -582,18 +592,18 @@ body {
   top: 45px;
   right: 82px; }
 
-/* line 69, ../src/common.scss */
+/* line 81, ../src/common.scss */
 #grass {
   position: absolute;
   top: 450px;
   right: 0;
   bottom: 0;
   left: 0; }
-  /* line 73, ../src/common.scss */
+  /* line 85, ../src/common.scss */
   #grass #grass-top {
     height: 40px;
     background: transparent url('../images/common-nosprite/grass-top.png?1305396390') no-repeat; }
-  /* line 78, ../src/common.scss */
+  /* line 90, ../src/common.scss */
   #grass #grass-bottom {
     position: absolute;
     top: 40px;
@@ -602,7 +612,7 @@ body {
     left: 0;
     background: #38bc04; }
 
-/* line 85, ../src/common.scss */
+/* line 97, ../src/common.scss */
 #searchbox {
   display: inline;
   float: left;
@@ -633,7 +643,7 @@ body {
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
   -o-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4); }
-  /* line 110, ../src/common.scss */
+  /* line 122, ../src/common.scss */
   #searchbox input {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -663,20 +673,20 @@ body {
     -webkit-transition-duration: 0.2s;
     -o-transition-duration: 0.2s;
     transition-duration: 0.2s; }
-    /* line 116, ../src/common.scss */
+    /* line 128, ../src/common.scss */
     .ie6 #searchbox input, .ie7 #searchbox input {
       height: 1em !important;
       width: 80% !important; }
-    /* line 124, ../src/common.scss */
+    /* line 136, ../src/common.scss */
     .ie6 #searchbox input, .ie7 #searchbox input {
       padding: 1em; }
-    /* line 128, ../src/common.scss */
+    /* line 140, ../src/common.scss */
     .ie8 #searchbox input {
       padding: .75em 1em; }
-    /* line 137, ../src/common.scss */
+    /* line 149, ../src/common.scss */
     .ie6 #searchbox input {
       background: #fff !important; }
-    /* line 146, ../src/common.scss */
+    /* line 158, ../src/common.scss */
     #searchbox input:focus {
       outline: none;
       border: 1px solid #2fc5ff;
@@ -684,8 +694,9 @@ body {
       -webkit-box-shadow: 0 0 5px #00b8ff;
       -o-box-shadow: 0 0 5px #00b8ff;
       box-shadow: 0 0 5px #00b8ff; }
-  /* line 153, ../src/common.scss */
+  /* line 165, ../src/common.scss */
   #searchbox #spinner {
+    display: none;
     position: absolute;
     top: 13px;
     right: 13px;
@@ -693,7 +704,7 @@ body {
     width: 24px;
     background: transparent url('../images/common-nosprite/loading.gif?1305421084') no-repeat; }
 
-/* line 161, ../src/common.scss */
+/* line 174, ../src/common.scss */
 .ui-autocomplete {
   list-style: none;
   padding: 0;
@@ -706,16 +717,17 @@ body {
     list-style-image: none;
     list-style-type: none;
     margin-left: 0px; }
-  /* line 172, ../src/common.scss */
+  /* line 185, ../src/common.scss */
   .ui-autocomplete a {
     color: inherit;
     text-decoration: inherit;
-    cursor: inherit; }
+    cursor: inherit;
+    cursor: pointer; }
     /* line 6, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/typography/links/_unstyled-link.scss */
     .ui-autocomplete a:active, .ui-autocomplete a:focus {
       outline: none; }
 
-/* line 177, ../src/common.scss */
+/* line 191, ../src/common.scss */
 #playlist {
   display: inline;
   float: left;
@@ -751,7 +763,7 @@ body {
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
   opacity: 0.9; }
-  /* line 207, ../src/common.scss */
+  /* line 221, ../src/common.scss */
   #playlist #songs {
     position: absolute;
     top: 15px;
@@ -759,20 +771,20 @@ body {
     bottom: 15px;
     left: 15px;
     clear: both; }
-  /* line 213, ../src/common.scss */
+  /* line 227, ../src/common.scss */
   #playlist #songs .viewport {
     width: 350px;
     height: 100%;
     overflow: hidden;
     position: relative; }
-  /* line 214, ../src/common.scss */
+  /* line 228, ../src/common.scss */
   #playlist #songs .overview {
     width: 340px;
     list-style: none;
     position: absolute;
     left: 0;
     top: 0; }
-  /* line 216, ../src/common.scss */
+  /* line 230, ../src/common.scss */
   #playlist #songs .thumb .end,
   #playlist #songs .thumb {
     background: #ffffff;
@@ -789,7 +801,7 @@ body {
     -ms-border-radius: 10px;
     -khtml-border-radius: 10px;
     border-radius: 10px; }
-  /* line 228, ../src/common.scss */
+  /* line 242, ../src/common.scss */
   #playlist #songs .scrollbar {
     background: rgba(0, 0, 0, 0.2);
     -moz-border-radius: 10px;
@@ -801,14 +813,14 @@ body {
     position: relative;
     float: right;
     width: 5px; }
-  /* line 229, ../src/common.scss */
+  /* line 243, ../src/common.scss */
   #playlist #songs .track {
     background-color: transparent;
     height: 100%;
     width: 5px;
     position: relative;
     padding: 0; }
-  /* line 230, ../src/common.scss */
+  /* line 244, ../src/common.scss */
   #playlist #songs .thumb {
     height: 20px;
     width: 5px;
@@ -816,15 +828,15 @@ body {
     overflow: hidden;
     position: absolute;
     top: 0; }
-  /* line 231, ../src/common.scss */
+  /* line 245, ../src/common.scss */
   #playlist #songs .thumb .end {
     overflow: hidden;
     height: 5px;
     width: 5px; }
-  /* line 232, ../src/common.scss */
+  /* line 246, ../src/common.scss */
   #playlist #songs .disable {
     display: none; }
-  /* line 234, ../src/common.scss */
+  /* line 248, ../src/common.scss */
   #playlist .song {
     overflow: hidden;
     *zoom: 1;
@@ -837,7 +849,7 @@ body {
     -o-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
     cursor: pointer; }
-    /* line 244, ../src/common.scss */
+    /* line 258, ../src/common.scss */
     #playlist .song .cover {
       float: left;
       margin: 3px 10px 3px 10px;
@@ -845,7 +857,7 @@ body {
       -webkit-box-shadow: 0 0 3px black;
       -o-box-shadow: 0 0 3px black;
       box-shadow: 0 0 3px black; }
-    /* line 250, ../src/common.scss */
+    /* line 264, ../src/common.scss */
     #playlist .song .title, #playlist .song .artist {
       margin-top: 8px;
       display: -moz-inline-box;
@@ -859,20 +871,20 @@ body {
       /* line 7, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
       #playlist .song .title, #playlist .song .artist {
         *display: inline; }
-    /* line 258, ../src/common.scss */
+    /* line 272, ../src/common.scss */
     #playlist .song .artist {
       margin-left: 5px;
       color: #ccc;
       font-size: 93%; }
-    /* line 265, ../src/common.scss */
+    /* line 279, ../src/common.scss */
     #playlist .song.playing .title {
       text-shadow: white 0 0 5px; }
 
-/* line 272, ../src/common.scss */
+/* line 286, ../src/common.scss */
 #youtube {
   text-align: center; }
 
-/* line 276, ../src/common.scss */
+/* line 290, ../src/common.scss */
 #tree {
   position: absolute;
   top: 317px;
@@ -880,3 +892,22 @@ body {
   height: 231px;
   width: 114px;
   background: url('../images/common-nosprite/tree.png?1305407658') no-repeat; }
+
+/* line 297, ../src/common.scss */
+footer {
+  display: inline;
+  float: left;
+  position: relative;
+  margin: 0 -80px 1.5em 80px;
+  padding-right: 40px;
+  margin-right: 0;
+  margin-top: 6em;
+  margin-bottom: 1em;
+  color: #fff;
+  font-size: 93%;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  opacity: 0.8; }
+  /* line 308, ../src/common.scss */
+  footer a, footer a:hover, footer a:visited {
+    color: #fff; }

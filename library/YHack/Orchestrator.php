@@ -138,7 +138,8 @@ class YHack_Orchestrator
             }
             $videoUrl = $resultArray['query']['results']['video']['url'];
             $httpParts = parse_url($videoUrl);
-            $httpParams = parse_str($httpParts);
+            $httpParams = array();
+            parse_str($httpParts['query'], $httpParams);
             $song['youtubeId'] = $httpParams['v'];
 
 			foreach ($song as $key => $value) {
