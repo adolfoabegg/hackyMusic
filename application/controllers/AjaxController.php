@@ -23,5 +23,23 @@ class AjaxController extends YHack_Controller
 
 		$this->_helper->layout()->setLayout('ajax');
 	}
+
+	/**
+	 * Perform the geolocation
+	 * 
+	 * @access public
+	 * @return void
+	 */
+	public function geolocationAction()
+	{
+		$latitude    = $this->_getParam('latitude');
+		$longitude   = $this->_getParam('longitude');
+
+		// get the address
+		$woeidParser = new YHack_YahooAPI_WoeId();
+		$address	 = $woeidParser->fetchAddressByLatitudeAndLongitude($latitude, $longitude);
+
+		$this->view->address = $address;
+	}
 }
 

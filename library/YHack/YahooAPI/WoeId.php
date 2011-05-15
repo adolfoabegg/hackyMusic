@@ -38,9 +38,31 @@ class YHack_YahooAPI_WoeId extends YHack_YahooAPI_Abstract
      */
     public function fetchByLatitudeAndLongitude($latitude, $longitude)
     {
-        $request = self::API_URL . '?q=' . $latitude . ',' . $longitude . '&appid=' . $this->getApiKey();
+        $request = self::API_URL . '?q=' . $latitude . ',' . $longitude . '&gflags=R&appid=' . $this->getApiKey();
 
         return $this->_parseRequest($request);
+    }
+
+    /**
+     * Fetch an address via latitude / longitude
+     * 
+     * @param numeric $latitude 
+     * @param numeric $longitude 
+     * @access public
+     * @return string
+     */
+    public function fetchAddressByLatitudeAndLongitude($latitude, $longitude)
+    {
+        $request  = self::API_URL . '?q=' . $latitude . ',' . $longitude . '&gflags=R&appid=' . $this->getApiKey();
+
+        $response = file_get_contents($request);
+        $xml      = new SimpleXMLElement($response);
+        
+        if ((int) $xml->Found == 0) {
+            throw new YHack_YahooAPI_Exception_WoeidNotFound();
+        }
+        
+        return (string) $xml->Result->city . ', ' . $xml->Result->country;
     }
 
     /**
