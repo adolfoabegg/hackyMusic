@@ -179,12 +179,12 @@ class YHack_Orchestrator
     /**
      * Maps the weather condition of the user's city to a tag (mood)
      * 
-     * @todo stop mocking up!!!
      * @return void
      */
     protected function _mapWeatherConditionToTag()
     {
-        return $this->_mapWeatherConditionToTagMockup();
+        
+        return YHack_Mapper::getInstance()->mapToMood($this->_weatherCondition); 
     }
     
     /**
