@@ -39,6 +39,7 @@ class AjaxController extends YHack_Controller
 		$woeidParser = new YHack_YahooAPI_WoeId();
 		$address	 = $woeidParser->fetchAddressByLatitudeAndLongitude($latitude, $longitude);
 
+		$this->view->address = $address;
 	}
 
 	/**
